@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +9,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <base href="<?=base_url()?>">
+  <base href="<?= base_url() ?>">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -169,11 +168,11 @@
     </div>
   </nav><!-- End Header/Navbar -->
 
-  <?php $this->renderSection('intro');?>
+  <?php $this->renderSection('intro'); ?>
 
   <main id="main">
 
-    <?php $this->renderSection('content');?>
+    <?php $this->renderSection('content'); ?>
 
   </main><!-- End #main -->
 
@@ -331,7 +330,6 @@
     </div>
   </footer><!-- End  Footer -->
 
-  <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -349,7 +347,7 @@
     const navLinks = document.querySelectorAll('.nav-link');
 
     navLinks.forEach((link) => {
-      link.addEventListener('click',() => {
+      link.addEventListener('click', () => {
         navLinks.forEach((navLinks) => {
           navLinks.classList.remove('active')
         })
@@ -358,7 +356,7 @@
     })
   </script>
 
-  <?php $this->renderSection('script');?>
+  <?php $this->renderSection('script'); ?>
 
 </body>
 
