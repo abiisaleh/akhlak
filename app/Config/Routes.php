@@ -29,9 +29,9 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'user::index');
-$routes->get('/ruko(:any)', 'user::ruko$1');
-$routes->post('/daftar', 'user::daftar');
+$routes->get('/', 'User::index');
+$routes->get('/ruko(:any)', 'User::ruko$1');
+$routes->post('/daftar', 'User::daftar');
 
 //admin
 $routes->get('admin', 'admin\dashboard::index');
