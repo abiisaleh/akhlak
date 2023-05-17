@@ -53,7 +53,7 @@
                 <div class="card-overlay-a-content">
                   <div class="card-header-a">
                     <h2 class="card-title-a">
-                      <a href="#"><?= $item['idRuko']?> <?= $item['pemilik']?>
+                      <a href="ruko/<?= $item['idRuko']?>"><?= $item['idRuko']?> <?= $item['pemilik']?>
                         <br /> <?= $item['alamat']?></a>
                     </h2>
                   </div>
@@ -61,7 +61,7 @@
                     <div class="price-box d-flex">
                       <span class="price-a">sewa | Rp. <?= number_format($item['harga'])?></span>
                     </div>
-                    <a href="property-single.html" class="link-a">Detail selengkapnya
+                    <a href="ruko/<?= $item['idRuko']?>" class="link-a">Detail selengkapnya
                       <span class="bi bi-chevron-right"></span>
                     </a>
                   </div>

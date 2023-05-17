@@ -44,4 +44,9 @@ class RukoModel extends Model
     {
         return $this->where('idUser',$pemilik);
     }
+
+    public function fasilitas()
+    {
+        return $this->join('fasilitas','fasilitas.fkRuko = ruko.idRuko');
+    }
 }

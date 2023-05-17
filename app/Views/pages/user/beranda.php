@@ -59,17 +59,15 @@
             <div class="card-box-c foo">
               <div class="card-header-c d-flex">
                 <div class="card-box-ico">
-                  <span class="bi bi-cart"></span>
+                  <span class="bi bi-search"></span>
                 </div>
                 <div class="card-title-c align-self-center">
-                  <h2 class="title-c">Lifestyle</h2>
+                  <h2 class="title-c">Cari</h2>
                 </div>
               </div>
               <div class="card-body-c">
                 <p class="content-c">
-                  Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta. Praesent sapien massa,
-                  convallis a pellentesque
-                  nec, egestas non nisi.
+                  Cari ruko sesuai kriteria yang diingkinkan. kami akan merekomendasikan menggunakan algoritma SAW (Simple Additive Weight).
                 </p>
               </div>
               <div class="card-footer-c">
@@ -86,7 +84,7 @@
                   <span class="bi bi-calendar4-week"></span>
                 </div>
                 <div class="card-title-c align-self-center">
-                  <h2 class="title-c">Loans</h2>
+                  <h2 class="title-c">Pesan</h2>
                 </div>
               </div>
               <div class="card-body-c">
@@ -110,7 +108,7 @@
                   <span class="bi bi-card-checklist"></span>
                 </div>
                 <div class="card-title-c align-self-center">
-                  <h2 class="title-c">Sell</h2>
+                  <h2 class="title-c">Jual</h2>
                 </div>
               </div>
               <div class="card-body-c">
