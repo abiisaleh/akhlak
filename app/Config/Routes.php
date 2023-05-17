@@ -34,33 +34,33 @@ $routes->get('/ruko(:any)', 'User::ruko$1');
 $routes->post('/daftar', 'User::daftar');
 
 //admin
-$routes->get('admin', 'admin\dashboard::index');
+$routes->get('admin', 'admin\Dashboard::index');
 
-$routes->get('admin/data-master/kriteria', 'admin\datamaster\kriteria::index');
-$routes->get('admin/data-master/kriteria/show', 'admin\datamaster\kriteria::show');
-$routes->post('admin/data-master/kriteria/save', 'admin\datamaster\kriteria::save');
-$routes->post('admin/data-master/kriteria/delete', 'admin\datamaster\kriteria::delete');
-$routes->get('api/fkKriteria', 'admin\datamaster\kriteria::getData');
+$routes->get('admin/data-master/kriteria', 'admin\datamaster\Kriteria::index');
+$routes->get('admin/data-master/kriteria/show', 'admin\datamaster\Kriteria::show');
+$routes->post('admin/data-master/kriteria/save', 'admin\datamaster\Kriteria::save');
+$routes->post('admin/data-master/kriteria/delete', 'admin\datamaster\Kriteria::delete');
+$routes->get('api/fkKriteria', 'admin\datamaster\Kriteria::getData');
 
-$routes->get('admin/data-master/subkriteria', 'admin\datamaster\subkriteria::index');
-$routes->get('admin/data-master/subkriteria/show', 'admin\datamaster\subkriteria::show');
-$routes->post('admin/data-master/subkriteria/save', 'admin\datamaster\subkriteria::save');
-$routes->post('admin/data-master/subkriteria/delete', 'admin\datamaster\subkriteria::delete');
+$routes->get('admin/data-master/subkriteria', 'admin\datamaster\Subkriteria::index');
+$routes->get('admin/data-master/subkriteria/show', 'admin\datamaster\Subkriteria::show');
+$routes->post('admin/data-master/subkriteria/save', 'admin\datamaster\Subkriteria::save');
+$routes->post('admin/data-master/subkriteria/delete', 'admin\datamaster\Subkriteria::delete');
 
-$routes->get('admin/ruko', 'admin\ruko::index');
-$routes->get('admin/ruko/show', 'admin\ruko::show');
-$routes->post('admin/ruko/save', 'admin\ruko::save');
-$routes->post('admin/ruko/delete', 'admin\ruko::delete');
+$routes->get('admin/ruko', 'admin\Ruko::index');
+$routes->get('admin/ruko/show', 'admin\Ruko::show');
+$routes->post('admin/ruko/save', 'admin\Ruko::save');
+$routes->post('admin/ruko/delete', 'admin\Ruko::delete');
 
 
-$routes->resource('admin/api/fasilitas',['controller' => 'admin\fasilitas']);
+$routes->resource('admin/api/fasilitas',['controller' => 'admin\Fasilitas']);
 
-$routes->post('admin/api/fasilitas/save', 'admin\fasilitas::save');
+$routes->post('admin/api/fasilitas/save', 'admin\Fasilitas::save');
 
-$routes->get('admin/pesanan', 'admin\pesanan::index');
-$routes->get('admin/pesanan/show', 'admin\pesanan::show');
-$routes->post('admin/pesanan/save', 'admin\pesanan::save');
-$routes->post('admin/pesanan/delete', 'admin\pesanan::delete');
+$routes->get('admin/pesanan', 'admin\Pesanan::index');
+$routes->get('admin/pesanan/show', 'admin\Pesanan::show');
+$routes->post('admin/pesanan/save', 'admin\Pesanan::save');
+$routes->post('admin/pesanan/delete', 'admin\Pesanan::delete');
 
 /*
  * --------------------------------------------------------------------

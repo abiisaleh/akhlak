@@ -20,12 +20,18 @@ class Pesanan extends BaseController
     {
         helper('form');
         $data['title'] = 'pesanan';
+        $data['data'] = $this->PesananModel->ruko()->findAll();
         return view('pages/admin/pesanan',$data);
     }
 
     public function show()
     {
-        $data['data'] = $this->PesananModel->findAll();
+        if (in_groups('admin')) {   
+            $data['data'] = $this->PesananModel->findAll();
+        } else {
+            // $data['data'] = $this->PesananModel->ruko(user_id())->findAll();
+            $data['data'] = $this->PesananModel->ruko()->findAll();
+        }
         echo json_encode($data);
     }
 

@@ -286,30 +286,7 @@
               </li>
             </ul>
           </nav>
-          <div class="socials-a">
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="bi bi-facebook" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="bi bi-twitter" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="bi bi-instagram" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="bi bi-linkedin" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
+        
           <div class="copyright-footer">
             <p class="copyright color-text-a">
               &copy; Copyright
@@ -338,7 +315,7 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <!-- <script src="assets/js/main.js"></script> -->
+  <script src="assets/js/main.js"></script>
 
   <!-- jQuery -->
   <script src="../../plugins/jquery/jquery.min.js"></script>

@@ -39,4 +39,9 @@ class RukoModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function pemilik($pemilik)
+    {
+        return $this->where('idUser',$pemilik);
+    }
 }

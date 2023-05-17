@@ -65,7 +65,7 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">admin</a>
+          <a href="#" class="d-block"><?= user()->username ?></a>
         </div>
       </div>
 
@@ -82,6 +82,7 @@
               </p>
             </a>
           </li>
+          <?php if (in_groups('admin')) : ?>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -105,6 +106,7 @@
               </li>
             </ul>
           </li>
+          <?php endif;?>
           <li class="nav-item">
             <a href="/admin/ruko" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>

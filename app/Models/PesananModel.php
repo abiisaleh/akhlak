@@ -39,4 +39,9 @@ class PesananModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function ruko($pemilik = null)
+    {
+        return $this->join('ruko','ruko.idRuko = pesanan.fkRuko')->where('idUser',$pemilik);
+    }
 }
