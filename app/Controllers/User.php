@@ -23,7 +23,7 @@ class User extends BaseController
             'ruko' => $this->RukoModel->findAll(4)
         ];
 
-        return view('pages/user/beranda',$data);
+        return view('pages/user/beranda', $data);
     }
 
     public function ruko($id = null)
@@ -39,26 +39,22 @@ class User extends BaseController
             $data = [
                 'ruko' => $this->RukoModel->findAll()
             ];
-            
+
             $view = 'pages/user/ruko';
         }
 
-        return view($view,$data);
+        return view($view, $data);
     }
 
     public function daftar()
     {
         $data = $this->request->getVar();
-        
-        // Register user in Mythauth
-        // $this->UserModel->insert($data);
 
-        // $this->RukoModel->insert($data);
-        
-        // Redirect to login page
-        // return redirect()->to('/login');
-        
+        $this->RukoModel->insert($data);
 
-        return $this->response->send();
+        $idRuko = $this->RukoModel->getInsertID();
+
+        // Redirect to admin page
+        return redirect()->to('admin/ruko/' . $idRuko);
     }
 }

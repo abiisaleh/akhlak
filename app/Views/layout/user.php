@@ -27,6 +27,17 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!-- leaflet Maps -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <style>
+    .map {
+      height: 280px;
+      width: 100%;
+    }
+  </style>
   <!-- =======================================================
   * Template Name: EstateAgency
   * Updated: Mar 10 2023 with Bootstrap v5.2.3
@@ -49,76 +60,10 @@
     <div class="box-collapse-wrap form">
       <form class="form-a">
         <div class="row">
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="Type">Type</label>
-              <select class="form-control form-select form-control-a" id="Type">
-                <option>All Type</option>
-                <option>For Rent</option>
-                <option>For Sale</option>
-                <option>Open House</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="city">City</label>
-              <select class="form-control form-select form-control-a" id="city">
-                <option>All City</option>
-                <option>Alabama</option>
-                <option>Arizona</option>
-                <option>California</option>
-                <option>Colorado</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="bedrooms">Bedrooms</label>
-              <select class="form-control form-select form-control-a" id="bedrooms">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="garages">Garages</label>
-              <select class="form-control form-select form-control-a" id="garages">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="bathrooms">Bathrooms</label>
-              <select class="form-control form-select form-control-a" id="bathrooms">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group mt-3">
-              <label class="pb-2" for="price">Min Price</label>
-              <select class="form-control form-select form-control-a" id="price">
-                <option>Unlimite</option>
-                <option>$50,000</option>
-                <option>$100,000</option>
-                <option>$150,000</option>
-                <option>$200,000</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-12">
+          <p>Cari Ruko dalam radius 1 km</p>
+          <div id="mapSewa" class="map"></div>
+
+          <div class="col-md-12 mt-5">
             <button type="submit" class="btn btn-b">Temukan Ruko</button>
           </div>
         </div>
@@ -187,47 +132,24 @@
             </div>
             <div class="w-body-a">
               <p class="w-text-a color-text-a">
-                Enim minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat duis
-                sed aute irure.
+                Temukan Ruko impian Anda dengan mudah menggunakan sistem rekomendasi kami! Hemat waktu dan usaha dalam proses pemesanan.
               </p>
-            </div>
-            <div class="w-footer-a">
-              <ul class="list-unstyled">
-                <li class="color-a">
-                  <span class="color-text-a">Phone .</span> contact@example.com
-                </li>
-                <li class="color-a">
-                  <span class="color-text-a">Email .</span> +54 356 945234
-                </li>
-              </ul>
             </div>
           </div>
         </div>
         <div class="col-sm-12 col-md-4 section-md-t3">
           <div class="widget-a">
             <div class="w-header-a">
-              <h3 class="w-title-a text-brand">Ukuran</h3>
+              <h3 class="w-title-a text-brand">Menu</h3>
             </div>
             <div class="w-body-a">
               <div class="w-body-a">
                 <ul class="list-unstyled">
                   <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Site Map</a>
+                    <i class="bi bi-chevron-right"></i> <a href="#daftar">Jual Ruko</a>
                   </li>
                   <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Legal</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Agent Admin</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Careers</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Affiliate</a>
-                  </li>
-                  <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#">Privacy Policy</a>
+                    <i class="bi bi-chevron-right"></i> <a href="#ruko">Sewa Ruko</a>
                   </li>
                 </ul>
               </div>
@@ -242,22 +164,10 @@
             <div class="w-body-a">
               <ul class="list-unstyled">
                 <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">Venezuela</a>
+                  <i class="bi bi-chevron-right"></i> <a href="#">Koya Barat</a>
                 </li>
                 <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">China</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">Hong Kong</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">Argentina</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">Singapore</a>
-                </li>
-                <li class="item-list-a">
-                  <i class="bi bi-chevron-right"></i> <a href="#">Philippines</a>
+                  <i class="bi bi-chevron-right"></i> <a href="#">Koya Timur</a>
                 </li>
               </ul>
             </div>
@@ -270,23 +180,6 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <nav class="nav-footer">
-            <ul class="list-inline">
-              <li class="list-inline-item">
-                <a href="#home">Beranda</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#about">Tentang</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#ruko">Ruko</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#daftar">Daftar</a>
-              </li>
-            </ul>
-          </nav>
-        
           <div class="copyright-footer">
             <p class="copyright color-text-a">
               &copy; Copyright
@@ -300,7 +193,7 @@
             Licensing information: https://bootstrapmade.com/license/
             Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=EstateAgency
           -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            Made by <a href="https://github.com/abiisaleh">abiisaleh</a>
           </div>
         </div>
       </div>
@@ -318,9 +211,10 @@
   <script src="assets/js/main.js"></script>
 
   <!-- jQuery -->
-  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <script src="plugins/jquery/jquery.min.js"></script>
 
   <script>
+    //Nav Link
     const navLinks = document.querySelectorAll('.nav-link');
 
     navLinks.forEach((link) => {
@@ -331,7 +225,65 @@
         link.classList.add('active')
       })
     })
+
+    //Maps Leaflet
+    var mapSewa = L.map('mapSewa').setView([-2.672313, 140.827509], 13); // Set initial map center and zoom level
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18
+    }).addTo(mapSewa);
+
+    var marker = null; // Global marker variable
+    var radius;
+
+    function onMapClickSewa(e) {
+      // Hapus marker dan radius sebelumnya (jika ada)
+      if (marker) {
+        mapSewa.removeLayer(marker);
+      }
+      if (radius) {
+        mapSewa.removeLayer(radius);
+      }
+
+      // Tambahkan marker baru
+      marker = L.marker(e.latlng).addTo(mapSewa);
+
+      // Tambahkan radius pada marker
+      radius = L.circle(e.latlng, {
+        color: 'blue',
+        fillColor: 'blue',
+        fillOpacity: 0.3,
+        radius: 1000 // Radius dalam meter
+      }).addTo(mapSewa);
+    }
+
+    mapSewa.on('click', onMapClickSewa);
+
+
+    var mapJual = L.map('mapJual').setView([-2.672313, 140.827509], 13); // Set initial map center and zoom level
+    // Tambahkan Google Maps sebagai latar belakang
+    L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+      maxZoom: 18,
+      subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    }).addTo(mapJual);
+
+
+    function onMapClickJual(e) {
+      if (marker) {
+        marker.setLatLng(e.latlng); // Update marker position
+        $('#inputMapJuallat').val(e.latlng.lat);
+        $('#inputMapJuallng').val(e.latlng.lng);
+      } else {
+        marker = L.marker(e.latlng).addTo(mapJual); // Create marker if it doesn't exist
+        $('#inputMapJuallat').val(e.latlng.lat);
+        $('#inputMapJuallng').val(e.latlng.lng);
+      }
+    }
+
+    mapJual.on('click', onMapClickJual);
   </script>
+
+  <?= view_cell('MapRukoCell', 'id=mapSewa') ?>
 
   <?php $this->renderSection('script'); ?>
 

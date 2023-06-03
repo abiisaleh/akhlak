@@ -16,11 +16,13 @@ class Dashboard extends BaseController
         $data = [
             'title' => 'Dashboard',
             'countRuko' => $RukoModel->countAllResults(),
-            'countDijual' => $RukoModel->where('status','0')->countAllResults(),
-            'countTerjual' => $RukoModel->where('status','1')->countAllResults(),
+            'countDijual' => $RukoModel->where('status', '0')->countAllResults(),
+            'countTerjual' => $RukoModel->where('status', '1')->countAllResults(),
             'countPemilik' => $UserModel->withGroup('pemilik')->countAllResults(),
-            'rukoBaru' => $RukoModel->where('verifikasi','0')->findAll(5)
+            'rukoBaru' => $RukoModel->where('verifikasi', '0')->findAll(5),
+            'ruko' => $RukoModel->findAll(),
+
         ];
-        return view('pages/admin/dashboard',$data);
+        return view('pages/admin/dashboard', $data);
     }
 }

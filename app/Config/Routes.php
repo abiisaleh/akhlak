@@ -48,12 +48,16 @@ $routes->post('admin/data-master/subkriteria/save', 'admin\datamaster\Subkriteri
 $routes->post('admin/data-master/subkriteria/delete', 'admin\datamaster\Subkriteria::delete');
 
 $routes->get('admin/ruko', 'admin\Ruko::index');
+$routes->get('admin/ruko(:num)', 'admin\Ruko::create$1');
 $routes->get('admin/ruko/show', 'admin\Ruko::show');
 $routes->post('admin/ruko/save', 'admin\Ruko::save');
 $routes->post('admin/ruko/delete', 'admin\Ruko::delete');
 
+$routes->get('admin/laporan', 'admin\Laporan::index');
+$routes->get('admin/laporan/show', 'admin\Laporan::show');
 
-$routes->resource('admin/api/fasilitas',['controller' => 'admin\Fasilitas']);
+
+$routes->resource('admin/api/fasilitas', ['controller' => 'admin\Fasilitas']);
 
 $routes->post('admin/api/fasilitas/save', 'admin\Fasilitas::save');
 

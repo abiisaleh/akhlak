@@ -19,6 +19,14 @@ class Ruko extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 50,
             ],
+            'lat' => [
+                'type' => 'VARCHAR',
+                'constraint' => 50,
+            ],
+            'lng' => [
+                'type' => 'VARCHAR',
+                'constraint' => 50,
+            ],
             'harga' => [
                 'type' => 'INT',
                 'constraint' => 9,
@@ -43,9 +51,13 @@ class Ruko extends Migration
                 'type' => 'ENUM("0","1")',
                 'default' => '0',
             ],
+            'idUser' => [
+                'type' => 'VARCHAR',
+                'constraint' => 3,
+            ],
         ]);
 
-        $this->forge->addKey('idRuko',true);
+        $this->forge->addKey('idRuko', true);
         $this->forge->createTable('ruko');
     }
 
