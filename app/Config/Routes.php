@@ -34,37 +34,41 @@ $routes->get('/ruko(:any)', 'User::ruko$1');
 $routes->post('/daftar', 'User::daftar');
 
 //admin
-$routes->get('admin', 'admin\Dashboard::index');
 
-$routes->get('admin/data-master/kriteria', 'admin\datamaster\Kriteria::index');
-$routes->get('admin/data-master/kriteria/show', 'admin\datamaster\Kriteria::show');
-$routes->post('admin/data-master/kriteria/save', 'admin\datamaster\Kriteria::save');
-$routes->post('admin/data-master/kriteria/delete', 'admin\datamaster\Kriteria::delete');
+$routes->group('admin', static function ($routes) {
+    $routes->get('/', 'admin\Dashboard::index');
+
+    $routes->group('data-master', static function ($routes) {
+        $routes->get('kriteria', 'admin\datamaster\Kriteria::index');
+        $routes->get('kriteria/show', 'admin\datamaster\Kriteria::show');
+        $routes->post('kriteria/save', 'admin\datamaster\Kriteria::save');
+        $routes->post('kriteria/delete', 'admin\datamaster\Kriteria::delete');
+
+        $routes->get('subkriteria', 'admin\datamaster\Subkriteria::index');
+        $routes->get('subkriteria/show', 'admin\datamaster\Subkriteria::show');
+        $routes->post('subkriteria/save', 'admin\datamaster\Subkriteria::save');
+        $routes->post('subkriteria/delete', 'admin\datamaster\Subkriteria::delete');
+    });
+
+    $routes->get('ruko', 'admin\Ruko::index');
+    $routes->get('ruko/(:num)', 'admin\Ruko::create/$1', ['filter' => 'role:pemilik']);
+    $routes->get('ruko/show', 'admin\Ruko::show');
+    $routes->post('ruko/save', 'admin\Ruko::save');
+    $routes->post('ruko/delete', 'admin\Ruko::delete');
+
+    $routes->get('pesanan', 'admin\Pesanan::index');
+    $routes->get('pesanan/show', 'admin\Pesanan::show');
+    $routes->post('pesanan/save', 'admin\Pesanan::save');
+    $routes->post('pesanan/delete', 'admin\Pesanan::delete');
+
+    $routes->get('laporan', 'admin\Laporan::index');
+    $routes->get('laporan/show', 'admin\Laporan::show');
+});
+
 $routes->get('api/fkKriteria', 'admin\datamaster\Kriteria::getData');
 
-$routes->get('admin/data-master/subkriteria', 'admin\datamaster\Subkriteria::index');
-$routes->get('admin/data-master/subkriteria/show', 'admin\datamaster\Subkriteria::show');
-$routes->post('admin/data-master/subkriteria/save', 'admin\datamaster\Subkriteria::save');
-$routes->post('admin/data-master/subkriteria/delete', 'admin\datamaster\Subkriteria::delete');
-
-$routes->get('admin/ruko', 'admin\Ruko::index');
-$routes->get('admin/ruko(:num)', 'admin\Ruko::create$1');
-$routes->get('admin/ruko/show', 'admin\Ruko::show');
-$routes->post('admin/ruko/save', 'admin\Ruko::save');
-$routes->post('admin/ruko/delete', 'admin\Ruko::delete');
-
-$routes->get('admin/laporan', 'admin\Laporan::index');
-$routes->get('admin/laporan/show', 'admin\Laporan::show');
-
-
 $routes->resource('admin/api/fasilitas', ['controller' => 'admin\Fasilitas']);
-
 $routes->post('admin/api/fasilitas/save', 'admin\Fasilitas::save');
-
-$routes->get('admin/pesanan', 'admin\Pesanan::index');
-$routes->get('admin/pesanan/show', 'admin\Pesanan::show');
-$routes->post('admin/pesanan/save', 'admin\Pesanan::save');
-$routes->post('admin/pesanan/delete', 'admin\Pesanan::delete');
 
 /*
  * --------------------------------------------------------------------
