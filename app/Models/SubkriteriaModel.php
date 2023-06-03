@@ -14,7 +14,7 @@ class SubkriteriaModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['fkKriteria','subkriteria','nilai'];
+    protected $allowedFields    = ['fkKriteria', 'subkriteria', 'nilai'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,4 +39,9 @@ class SubkriteriaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function kriteria($kriteriaID)
+    {
+        return $this->where('fkKriteria', $kriteriaID)->findAll();
+    }
 }

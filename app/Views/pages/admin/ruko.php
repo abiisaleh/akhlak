@@ -94,12 +94,18 @@
         <form id="form-kriteria">
           <?= csrf_field(); ?>
           <input type="text" id="inputidRuko" name="idRuko" hidden>
+          <?php $subkriteria = model('SubkriteriaModel') ?>
           <?php foreach ($kriteria as $value) : ?>
             <div class="form-group row">
               <input type="text" name="fkKriteria" value="<?= $value['idKriteria'] ?>" hidden>
-              <label for="input<?= $value['kriteria'] ?>" class="col-sm-4 col-form-label"><?= $value['kriteria'] ?></label>
+              <label class="col-sm-4 col-form-label"><?= $value['kriteria'] ?></label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" id="input<?= $value['kriteria'] ?>" placeholder="-" name="nilai">
+                <select class="form-control" name="fkKriteria">
+                  <option>-</option>
+                  <?php foreach ($subkriteria->kriteria($value['idKriteria']) as $Subkriteria) : ?>
+                    <option value="<?= $Subkriteria['nilai'] ?>"><?= $Subkriteria['subkriteria'] ?></option>
+                  <?php endforeach; ?>
+                </select>
               </div>
             </div>
           <?php endforeach; ?>
