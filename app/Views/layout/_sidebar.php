@@ -67,7 +67,6 @@ $uri2 = $uri[2] ?? '';
                         <i class="nav-icon fas fa-home"></i>
                         <p>
                             Ruko
-                            <span class="badge badge-warning right" id="countRuko"></span>
                         </p>
                     </a>
                 </li>

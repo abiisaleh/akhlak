@@ -6,6 +6,8 @@ use App\Controllers\BaseController;
 use App\Models\KriteriaModel;
 use App\Models\RukoModel;
 
+use function PHPUnit\Framework\isNull;
+
 class Ruko extends BaseController
 {
     protected $RukoModel;
@@ -29,10 +31,8 @@ class Ruko extends BaseController
     {
         if (in_groups('admin')) {
             $data['data'] = $this->RukoModel->findAll();
-            $data['total'] = $this->RukoModel->where('verifikasi', '0')->countAllResults();
         } else {
             $data['data'] = $this->RukoModel->pemilik(user_id())->findAll();
-            $data['total'] = $this->RukoModel->pemilik(user_id())->countAllResults();
         }
 
         echo json_encode($data);
@@ -40,21 +40,77 @@ class Ruko extends BaseController
 
     public function create($id)
     {
-        // if (in_groups('pemilik')) {
-        $data = [
-            'idRuko' => $id,
-            'idUser' => user_id()
-        ];
-        $this->RukoModel->save($data);
-        // }
+        if (in_groups('pemilik')) {
+            $data = [
+                'idRuko' => $id,
+                'idUser' => user_id()
+            ];
+            $this->RukoModel->save($data);
+        }
 
         return redirect()->to('admin/ruko');
     }
 
+    public function edit($id)
+    {
+        $data['title'] = 'Detail Ruko';
+        $data['ruko'] = $this->RukoModel->find($id);
+        $data['kriteria'] = model('KriteriaModel')->findAll();
+        $data['fasilitas'] = model('FasilitasModel')->where('fkRuko', $id)->find();
+
+        return view('pages/admin/ruko-detail', $data);
+    }
+
     public function save()
     {
-        $data = $this->request->getVar();
-        $this->RukoModel->save($data);
+        if ($this->request->isAJAX()) {
+            $data = $this->request->getVar();
+            $fileDokumen = $this->request->getFile('dokumen');
+            $fileGambar = $this->request->getFile('gambar');
+
+            if ($fileDokumen && $fileDokumen->isValid() && !$fileDokumen->hasMoved()) {
+                $newName = $fileDokumen->getRandomName();
+                $data['dokumen'] = $newName;
+                $fileDokumen->move(FCPATH . 'uploads/doc', $newName);
+                $res['msg'][] = 'File berhasil diunggah.';
+            }
+
+            if ($fileGambar && $fileGambar->isValid() && !$fileGambar->hasMoved()) {
+                $newName = $fileGambar->getRandomName();
+                $data['gambar'] = $newName;
+                $fileGambar->move(FCPATH . 'uploads/img', $newName);
+                $res['msg'][] = 'Gambar berhasil diunggah.';
+            }
+
+            $this->RukoModel->save($data);
+            $res['msg'][] = 'Data berhasil diubah.';
+
+            return $this->response->setJSON($res);
+        };
+    }
+
+    public function fasilitas()
+    {
+        $fasilitasModel = model('FasilitasModel');
+        $kriteria = model('KriteriaModel')->findAll();
+
+        $data['fkRuko'] = $this->request->getVar('idRuko');
+
+        foreach ($kriteria as $Kriteria) {
+            $data['fkKriteria'] = $Kriteria['idKriteria'];
+            $data['fkSubkriteria'] = $this->request->getVar($Kriteria['idKriteria']);
+
+            $fasilitas = $fasilitasModel->getID($data['fkRuko'], $data['fkKriteria']);
+            if (empty($fasilitas)) {
+                model('FasilitasModel')->insert($data);
+            } else {
+                $data['idFasilitas'] = $fasilitas['idFasilitas'];
+                model('FasilitasModel')->save($data);
+            }
+        }
+
+        $res['msg'] = 'Data Kriteria berhasil disimpan.';
+        return $this->response->setJSON($res);
     }
 
     public function delete()

@@ -23,10 +23,7 @@
         <div id="property-single-carousel" class="swiper">
           <div class="swiper-wrapper">
             <div class="carousel-item-b swiper-slide">
-              <img src="assets/img/slide-1.jpg" alt="">
-            </div>
-            <div class="carousel-item-b swiper-slide">
-              <img src="assets/img/slide-2.jpg" alt="">
+              <img src="uploads/img/<?= $ruko['gambar'] ?>" alt="">
             </div>
           </div>
         </div>
@@ -59,44 +56,7 @@
                   </div>
                 </div>
               </div>
-              <div class="summary-list">
-                <ul class="list">
-                  <li class="d-flex justify-content-between">
-                    <strong>Property ID:</strong>
-                    <span>1134</span>
-                  </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Location:</strong>
-                    <span>Chicago, IL 606543</span>
-                  </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Property Type:</strong>
-                    <span>House</span>
-                  </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Status:</strong>
-                    <span>Sale</span>
-                  </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Area:</strong>
-                    <span>340m
-                      <sup>2</sup>
-                    </span>
-                  </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Beds:</strong>
-                    <span>4</span>
-                  </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Baths:</strong>
-                    <span>2</span>
-                  </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Garage:</strong>
-                    <span>1</span>
-                  </li>
-                </ul>
-              </div>
+              <?= view_cell('KriteriaRukoCell', ['ruko' => $ruko['idRuko']]) ?>
             </div>
           </div>
           <div class="col-md-7">
@@ -112,37 +72,29 @@
               <ul class="list-unstyled">
                 <li class="d-flex justify-content-between">
                   <strong>Nama:</strong>
-                  <span class="color-text-a">Muhamad Abi Saleh</span>
+                  <span class="color-text-a"><?= $ruko['pemilik'] ?></span>
                 </li>
                 <li class="d-flex justify-content-between">
                   <strong>Phone:</strong>
-                  <span class="color-text-a">(222) 4568932</span>
-                </li>
-                <li class="d-flex justify-content-between">
-                  <strong>Email:</strong>
-                  <span class="color-text-a">annabella@example.com</span>
+                  <span class="color-text-a"><?= $ruko['telp'] ?></span>
                 </li>
               </ul>
               <p class="color-text-a">
-                Untuk memesan silhkn mengisi form dibawah ini.
+                Untuk memesan silahkan mengisi form dibawah ini.
               </p>
             </div>
             <div class="property-contact">
-              <form class="form-a">
+              <form class="form-a" method="POST" action="<?= base_url('sewa') ?>">
                 <div class="row">
+                  <input type="hidden" name="idRuko" value="<?= $ruko['idRuko'] ?>">
                   <div class="col-md-12 mb-1">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Nama Lengkap *" required>
+                      <input type="text" class="form-control form-control-lg form-control-a" id="inputName" name="nama" placeholder="Nama Lengkap *" required>
                     </div>
                   </div>
                   <div class="col-md-12 mb-1">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Telp *" required>
-                    </div>
-                  </div>
-                  <div class="col-md-12 mb-1">
-                    <div class="form-group">
-                      <textarea id="textMessage" class="form-control" placeholder="Alamat *" name="message" cols="45" rows="5" required></textarea>
+                      <input type="number" class="form-control form-control-lg form-control-a" id="inputEmail1" name="telp" placeholder="Telp *" required>
                     </div>
                   </div>
                   <div class="col-md-12 mt-3">

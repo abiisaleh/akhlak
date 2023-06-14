@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-12 col-sm-6 col-md-3">
     <div class="info-box">
-      <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+      <span class="info-box-icon bg-info elevation-1"><i class="fas fa-home"></i></span>
 
       <div class="info-box-content">
         <span class="info-box-text">Total Ruko</span>
@@ -39,7 +39,7 @@
       <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Terjual</span>
+        <span class="info-box-text">Disewa</span>
         <span class="info-box-number"><?= $countTerjual ?></span>
       </div>
       <!-- /.info-box-content -->
@@ -118,7 +118,7 @@
               <tr>
                 <th>ID</th>
                 <th>Pemilik</th>
-                <th>Status</th>
+                <th>Verifikasi</th>
               </tr>
             </thead>
             <tbody>
@@ -136,7 +136,7 @@
       </div>
       <!-- /.card-body -->
       <div class="card-footer clearfix">
-        <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Tampilkan Data Ruko</a>
+        <a href="admin/ruko" class="btn btn-sm btn-info float-left">Tampilkan Data Ruko</a>
       </div>
       <!-- /.card-footer -->
     </div>

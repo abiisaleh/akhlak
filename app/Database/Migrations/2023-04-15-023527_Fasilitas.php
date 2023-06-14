@@ -19,13 +19,17 @@ class Fasilitas extends Migration
                 'type' => 'INT',
                 'constraint' => 5,
             ],
+            'fkKriteria' => [
+                'type' => 'INT',
+                'constraint' => 5,
+            ],
             'fkSubkriteria' => [
                 'type' => 'INT',
                 'constraint' => 5,
             ],
         ]);
 
-        $this->forge->addKey('idFasilitas',true);
+        $this->forge->addKey('idFasilitas', true);
         $this->forge->createTable('fasilitas');
     }
 

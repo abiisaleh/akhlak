@@ -41,7 +41,11 @@ class Ruko extends Migration
             ],
             'dokumen' => [
                 'type' => 'VARCHAR',
-                'constraint' => 30,
+                'constraint' => 100,
+            ],
+            'gambar' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
             ],
             'verifikasi' => [
                 'type' => 'ENUM("0","1")',

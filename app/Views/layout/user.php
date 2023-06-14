@@ -58,16 +58,15 @@
     </div>
     <span class="close-box-collapse right-boxed bi bi-x"></span>
     <div class="box-collapse-wrap form">
-      <form class="form-a">
-        <div class="row">
-          <p>Cari Ruko dalam radius 1 km</p>
-          <div id="mapSewa" class="map"></div>
+      <div class="row">
+        <p>Cari Ruko dalam radius 1 km</p>
+        <div id="mapSewa" class="map"></div>
 
-          <div class="col-md-12 mt-5">
-            <button type="submit" class="btn btn-b">Temukan Ruko</button>
-          </div>
+        <div class="col-md-12 mt-5">
+          <button type="button" id="btn-search" class="btn btn-b">Temukan Ruko</button>
         </div>
-      </form>
+      </div>
+      <div id="hasil"></div>
     </div>
   </div><!-- End Property Search Section -->>
 
@@ -245,20 +244,49 @@
         mapSewa.removeLayer(radius);
       }
 
-      // Tambahkan marker baru
-      marker = L.marker(e.latlng).addTo(mapSewa);
-
       // Tambahkan radius pada marker
       radius = L.circle(e.latlng, {
         color: 'blue',
         fillColor: 'blue',
         fillOpacity: 0.3,
-        radius: 1000 // Radius dalam meter
+        radius: 3000 // Radius dalam meter
       }).addTo(mapSewa);
     }
 
     mapSewa.on('click', onMapClickSewa);
 
+    $('#btn-search').on('click', function() {
+      // Array untuk menyimpan marker dalam radius
+      var markersInRadius = [];
+
+      // Loop melalui data marker
+      markerData.forEach(function(marker) {
+        var markerLatLng = L.latLng(marker.latlng);
+
+        // Memeriksa apakah marker berada dalam batas-batas lingkaran
+        if (radius.getBounds().contains(markerLatLng)) {
+          markersInRadius.push(marker.id);
+        }
+      });
+
+      // Mengirim markersInRadius menggunakan Ajax (jQuery)
+      $.ajax({
+        url: 'search',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(markersInRadius),
+        success: function(response) {
+          // Handle response dari server jika diperlukan
+          // $('#hasil').empty()
+          // $('#hasil').append(response)
+          window.location.href = '<?= base_url('rekomendasi') ?>'
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          // Handle error jika terjadi kesalahan
+          console.error('Terjadi kesalahan:', errorThrown);
+        }
+      });
+    })
 
     var mapJual = L.map('mapJual').setView([-2.672313, 140.827509], 13); // Set initial map center and zoom level
     // Tambahkan Google Maps sebagai latar belakang

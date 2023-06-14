@@ -30,11 +30,19 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'User::index');
-$routes->get('/ruko(:any)', 'User::ruko$1');
-$routes->post('/daftar', 'User::daftar');
+$routes->get('rekomendasi', 'User::rekomendasi');
+$routes->get('ruko(:any)', 'User::ruko$1');
+$routes->post('daftar', 'User::daftar');
+$routes->post('search', 'User::search');
+
+$routes->post('sewa', 'Payment::sewa');
+$routes->get('sewa/berhasil', 'Payment::berhasil');
+$routes->get('sewa/gagal', 'Payment::gagal');
+
+$routes->get('payment', 'Payment::index');
+$routes->get('payout', 'Payment::payout');
 
 //admin
-
 $routes->group('admin', static function ($routes) {
     $routes->get('/', 'admin\Dashboard::index');
 
@@ -52,9 +60,11 @@ $routes->group('admin', static function ($routes) {
 
     $routes->get('ruko', 'admin\Ruko::index');
     $routes->get('ruko/(:num)', 'admin\Ruko::create/$1', ['filter' => 'role:pemilik']);
+    $routes->get('ruko/edit/(:num)', 'admin\Ruko::edit/$1');
     $routes->get('ruko/show', 'admin\Ruko::show');
     $routes->post('ruko/save', 'admin\Ruko::save');
     $routes->post('ruko/delete', 'admin\Ruko::delete');
+    $routes->post('ruko/fasilitas', 'admin\Ruko::fasilitas');
 
     $routes->get('pesanan', 'admin\Pesanan::index');
     $routes->get('pesanan/show', 'admin\Pesanan::show');

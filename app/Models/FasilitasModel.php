@@ -14,7 +14,7 @@ class FasilitasModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['fkRuko', 'fkKriteria', 'fkSubkriteria'];
 
     // Dates
     protected $useTimestamps = false;
@@ -39,4 +39,15 @@ class FasilitasModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function ruko($id)
+    {
+        return $this->where('fkRuko', $id)->find();
+    }
+
+    public function getID($ruko, $kriteria)
+    {
+        $id = $this->where('fkRuko', $ruko)->where('fkKriteria', $kriteria)->first();
+        return $id;
+    }
 }

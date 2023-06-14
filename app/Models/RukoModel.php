@@ -14,7 +14,7 @@ class RukoModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['alamat', 'harga', 'pemilik', 'telp', 'verifikasi', 'status', 'idUser', 'lat', 'lng'];
+    protected $allowedFields    = ['alamat', 'harga', 'pemilik', 'telp', 'verifikasi', 'status', 'idUser', 'lat', 'lng', 'dokumen', 'gambar'];
 
     // Dates
     protected $useTimestamps = false;
@@ -47,6 +47,10 @@ class RukoModel extends Model
 
     public function fasilitas()
     {
-        return $this->join('fasilitas', 'fasilitas.fkRuko = ruko.idRuko');
+        return $this
+            ->join('fasilitas', 'fasilitas.fkRuko = ruko.idRuko', 'LEFT')
+            ->join('kriteria', 'kriteria.idKriteria = fasilitas.fkKriteria', 'LEFT')
+            ->join('subkriteria', 'subkriteria.idSubkriteria = fasilitas.fkSubkriteria', 'LEFT')
+            ->select('ruko.*, kriteria, subkriteria');
     }
 }

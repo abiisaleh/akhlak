@@ -155,7 +155,7 @@
           <div class="carousel-item-b swiper-slide">
             <div class="card-box-a card-shadow">
               <div class="img-box-a">
-                <img src="assets/img/property-6.jpg" alt="" class="img-a img-fluid">
+                <img src="uploads/img/<?= $item['gambar'] ?>" alt="" class="img-a img-fluid" style="max-height: 400px; max-width: fit-content;">
               </div>
               <div class="card-overlay">
                 <div class="card-overlay-a-content">
@@ -169,31 +169,9 @@
                     <div class="price-box d-flex">
                       <span class="price-a">sewa | Rp. <?= number_format($item['harga']) ?></span>
                     </div>
-                    <a href="#" class="link-a">Detail selengkapnya
+                    <a href="ruko/<?= $item['idRuko'] ?>" class="link-a">Detail selengkapnya
                       <span class="bi bi-chevron-right"></span>
                     </a>
-                  </div>
-                  <div class="card-footer-a">
-                    <ul class="card-info d-flex justify-content-around">
-                      <li>
-                        <h4 class="card-info-title">Area</h4>
-                        <span>340m
-                          <sup>2</sup>
-                        </span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Beds</h4>
-                        <span>2</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Baths</h4>
-                        <span>4</span>
-                      </li>
-                      <li>
-                        <h4 class="card-info-title">Garages</h4>
-                        <span>1</span>
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </div>

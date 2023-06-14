@@ -61,12 +61,6 @@
               </select>
             </div>
           </div>
-          <div class="form-group row">
-            <label for="inputdokumen" class="col-sm-4 col-form-label">Dokumen</label>
-            <div class="col-sm-8">
-              <input type="file" class="form-control" id="inputdokumen" name="dokumen">
-            </div>
-          </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
             <button type="submit" class="btn btn-primary btn-save">Simpan</button>
@@ -160,7 +154,13 @@
       columnDefs: [{
         "targets": -1,
         "data": null,
-        "defaultContent": "<button class='btn btn-sm btn-danger btnHapus'>Hapus</button> <button class='btn btn-sm btn-warning btnEdit'>Edit</button> <button class='btn btn-sm btn-info btnKriteria'>Kriteria</button>"
+        "defaultContent": `
+          <button class='btn btn-sm btn-danger btnHapus'>Hapus</button> 
+          <button class='btn btn-sm btn-warning btnEdit'>Detail</button> 
+          <?php if (in_groups('admin')) : ?>
+          <button class='btn btn-sm btn-success btnVerifikasi'>Verifikasi</button>
+          <?php endif ?>
+          `
       }, ]
     })
 
@@ -191,7 +191,7 @@
     //Hapus Data
     $('#tabel tbody').on('click', '.btnHapus', function() {
       var data = dataTable.row($(this).parents('tr')).data()
-      var id = data.idKriteria
+      var id = data.idRuko
 
       if (confirm('Anda yakin ingin menghapus data ini?')) {
         $.ajax({
@@ -211,6 +211,13 @@
     $('#tabel tbody').on('click', '.btnEdit', function() {
       var data = dataTable.row($(this).parents('tr')).data();
 
+      window.location.replace("<?= base_url('admin/ruko/edit/') ?>" + data.idRuko);
+    });
+
+    //Kriteria
+    $('#tabel tbody').on('click', '.btnVerifikasi', function() {
+      var data = dataTable.row($(this).parents('tr')).data();
+
       $('#inputidRuko').val(data.idRuko);
       $('#inputalamat').val(data.alamat);
       $('#inputharga').val(data.harga);
@@ -220,20 +227,6 @@
       $('#selectstatus').val(data.status);
 
       $('#modal-add').modal('show');
-
-      $.ajax({
-        url: "<?= base_url('admin/ruko/show') ?>",
-        dataType: "json",
-        success: function(data) {
-          var mySpan = document.getElementById("countRuko");
-          mySpan.textContent = data.total;
-        }
-      })
-    });
-
-    //Kriteria
-    $('#tabel tbody').on('click', '.btnKriteria', function() {
-      $('#modal-kriteria').modal('show');
     });
 
   })

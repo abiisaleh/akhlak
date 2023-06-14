@@ -12,6 +12,18 @@ class Demo extends Seeder
         $authorize->addUserToGroup(1, 'admin');
         $authorize->addUserToGroup(2, 'pemilik');
 
+        //ruko
+        $data = [
+            'alamat' => 'Koya Barat',
+            'lat' => '-2.672313',
+            'lng' => '140.827509',
+            'harga' => 12000000,
+            'pemilik' => 'Akhlak',
+            'telp' => '082238204776',
+            'idUser' => 2
+        ];
+        $this->db->table('ruko')->insert($data);
+
         //kriteria
         $data = [
             ['kriteria' => 'harga', 'bobot' => 18],

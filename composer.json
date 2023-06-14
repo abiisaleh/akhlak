@@ -10,7 +10,8 @@
         "geocoder-php/google-maps-provider": "^4.7",
         "myth/auth": "^1.2",
         "nyholm/psr7": "^1.8",
-        "symfony/http-client": "^6.3"
+        "symfony/http-client": "^6.3",
+        "xendit/xendit-php": "^2.19"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",
