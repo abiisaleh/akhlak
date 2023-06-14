@@ -8,7 +8,7 @@
 
     <?php foreach ($ruko as $item) : ?>
 
-      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(assets/img/slide-1.jpg)">
+      <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(uploads/img/<?= $item['gambar'] ?>)">
         <div class="overlay overlay-a"></div>
         <div class="intro-content display-table">
           <div class="table-cell">
