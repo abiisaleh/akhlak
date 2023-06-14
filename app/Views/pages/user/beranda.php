@@ -16,8 +16,7 @@
               <div class="row">
                 <div class="col-lg-8">
                   <div class="intro-body">
-                    <p class="intro-title-top">Koya Barat, Jayapura
-                      <br> 78345
+                    <p class="intro-title-top"><?= $item['alamat'] ?>, Jayapura
                     </p>
                     <h1 class="intro-title mb-4 ">
                       <span class="color-b"><?= $item['idRuko'] ?> </span> <?= $item['pemilik'] ?>
