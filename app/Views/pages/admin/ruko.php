@@ -142,10 +142,24 @@
           "data": "telp"
         },
         {
-          "data": "verifikasi"
+          "data": null,
+          "render": function(data) {
+            if (data.verifikasi == 1) {
+              return "<span class='badge bg-success'>sudah</span>"
+            } else {
+              return "<span class='badge bg-warning'>belum</span>"
+            }
+          }
         },
         {
-          "data": "status"
+          "data": "status",
+          "render": function(data) {
+            if (data.verifikasi == 1) {
+              return "<span class='badge bg-success'>disewa</span>"
+            } else {
+              return "<span class='badge bg-warning'>kosong</span>"
+            }
+          }
         },
         {
           "data": ""

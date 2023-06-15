@@ -3,8 +3,9 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\PesananModel;
+use App\Models\RukoModel;
 use Xendit\Xendit;
-use Xendit\Exceptions\ApiException;
 
 class Payment extends BaseController
 {
@@ -15,9 +16,6 @@ class Payment extends BaseController
         $ruko = model('RukoModel')->find($data['idRuko']);
 
         Xendit::setApiKey('xnd_development_5J1A8ar7422uMjI2O6rEGV7n25MMGVAVE2NvTuTwaV8fuzaZqqO0ZBjVJ61nRma');
-
-        $response = \Xendit\Invoice::retrieve('648970e83a1e4b65a201d777');
-        dd($response);
 
         $harga = $ruko['harga'];
         $persentase = 1; //persentase biaya admin
@@ -71,7 +69,8 @@ class Payment extends BaseController
 
         $invoice =  \Xendit\Invoice::create($params);
 
-        session()->setFlashdata('ruko', $ruko);
+        session()->set('ruko', $ruko);
+        session()->set('total', $harga + $admin);
 
         // Mengarahkan pengguna ke halaman pembayaran Xendit
         return redirect()->to($invoice['invoice_url']);
@@ -79,7 +78,8 @@ class Payment extends BaseController
 
     public function berhasil()
     {
-        $data = session()->getFlashdata('ruko');
+        $data = session()->get('ruko');
+        $total = session()->get('total');
 
         //kirim uang sewa ke pemilik ruko
         Xendit::setApiKey('xnd_development_5J1A8ar7422uMjI2O6rEGV7n25MMGVAVE2NvTuTwaV8fuzaZqqO0ZBjVJ61nRma');
@@ -100,8 +100,20 @@ class Payment extends BaseController
             'idRuko' => $data['idRuko'],
             'status' => 1
         ];
+        $RukoModel = new RukoModel;
+        $RukoModel->save($ruko);
 
-        model('RukoModel')->save($ruko);
+        //tambahkan ke data pesanan
+        $pesanan = [
+            'fkRuko'        => $data['idRuko'],
+            'nama'          => '',
+            'telp'          => '',
+            'tanggal'       => date('now'),
+            'total'         => $total,
+            'pembayaran'    => '',
+        ];
+        $PesananModel = new PesananModel;
+        $PesananModel->insert($pesanan);
 
         return view('pages/user/sewa-berhasil');
     }
