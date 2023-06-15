@@ -145,7 +145,7 @@
               <div class="w-body-a">
                 <ul class="list-unstyled">
                   <li class="item-list-a">
-                    <i class="bi bi-chevron-right"></i> <a href="#daftar">Jual Ruko</a>
+                    <i class="bi bi-chevron-right"></i> <a href="#daftar">Daftarkan Ruko</a>
                   </li>
                   <li class="item-list-a">
                     <i class="bi bi-chevron-right"></i> <a href="#ruko">Sewa Ruko</a>
