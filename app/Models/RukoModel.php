@@ -53,4 +53,9 @@ class RukoModel extends Model
             ->join('subkriteria', 'subkriteria.idSubkriteria = fasilitas.fkSubkriteria', 'LEFT')
             ->select('ruko.*, kriteria, subkriteria');
     }
+
+    public function verifikasi()
+    {
+        return $this->where('verifikasi', '1');
+    }
 }

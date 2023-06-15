@@ -19,7 +19,7 @@ class User extends BaseController
 
     public function index()
     {
-        $data['ruko'] = $this->RukoModel->findAll(4);
+        $data['ruko'] = $this->RukoModel->verifikasi()->findAll(4);
 
         return view('pages/user/beranda', $data);
     }
