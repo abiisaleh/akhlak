@@ -22,7 +22,7 @@
       <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Disewa</span>
+        <span class="info-box-text">Kosong</span>
         <span class="info-box-number"><?= $countDijual ?></span>
       </div>
       <!-- /.info-box-content -->
