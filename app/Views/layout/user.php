@@ -62,11 +62,30 @@
         <p>Cari Ruko dalam radius 500 m</p>
         <div id="mapSewa" class="map"></div>
 
+
+        <?php $kriteria = model('KriteriaModel')->find(); ?>
+        <?php $subkriteria = model('SubkriteriaModel'); ?>
+
+        <form id="form-kriteria">
+          <?php foreach ($kriteria as $Kriteria) : ?>
+            <div class="col-md-6 mb-2">
+              <div class="form-group mt-3">
+                <label class="pb-2" for="input<?= $Kriteria['kriteria'] ?>"><?= $Kriteria['kriteria'] ?></label>
+                <select class="form-control form-select form-control-a" name="<?= $Kriteria['idKriteria'] ?>" id="input<?= $Kriteria['kriteria'] ?>">
+                  <option>-</option>
+                  <?php foreach ($subkriteria->where('fkKriteria', $Kriteria['idKriteria'])->find() as $Subkriteria) : ?>
+                    <option value="<?= $Subkriteria['idSubkriteria'] ?>"><?= $Subkriteria['subkriteria'] ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        </form>
+
         <div class="col-md-12 mt-5">
           <button type="button" id="btn-search" class="btn btn-b">Temukan Ruko</button>
         </div>
       </div>
-      <div id="hasil"></div>
     </div>
   </div><!-- End Property Search Section -->>
 
@@ -269,16 +288,19 @@
         }
       });
 
+      //get input data
+      var formData = $('#form-kriteria').serialize()
+
       // Mengirim markersInRadius menggunakan Ajax (jQuery)
       $.ajax({
         url: 'search',
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify(markersInRadius),
+        data: {
+          'map': JSON.stringify(markersInRadius),
+          'kriteria': formData,
+        },
         success: function(response) {
-          // Handle response dari server jika diperlukan
-          // $('#hasil').empty()
-          // $('#hasil').append(response)
           window.location.href = '<?= base_url('rekomendasi') ?>'
         },
         error: function(jqXHR, textStatus, errorThrown) {
