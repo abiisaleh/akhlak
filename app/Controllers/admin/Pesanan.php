@@ -21,16 +21,15 @@ class Pesanan extends BaseController
         helper('form');
         $data['title'] = 'pesanan';
         $data['data'] = $this->PesananModel->ruko()->findAll();
-        return view('pages/admin/pesanan',$data);
+        return view('pages/admin/pesanan', $data);
     }
 
     public function show()
     {
-        if (in_groups('admin')) {   
+        if (in_groups('admin')) {
             $data['data'] = $this->PesananModel->findAll();
         } else {
-            // $data['data'] = $this->PesananModel->ruko(user_id())->findAll();
-            $data['data'] = $this->PesananModel->ruko()->findAll();
+            $data['data'] = $this->PesananModel->ruko(user_id())->find();
         }
         echo json_encode($data);
     }
@@ -41,7 +40,7 @@ class Pesanan extends BaseController
 
         $RukoModel = new RukoModel();
         $ruko = $RukoModel->find($data['fkRuko']);
-        $data['total'] = $ruko['harga'] * 3/100 + $ruko['harga'];
+        $data['total'] = $ruko['harga'] * 3 / 100 + $ruko['harga'];
 
         $this->PesananModel->save($data);
     }

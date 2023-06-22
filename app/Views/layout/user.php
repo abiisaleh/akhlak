@@ -59,7 +59,7 @@
     <span class="close-box-collapse right-boxed bi bi-x"></span>
     <div class="box-collapse-wrap form">
       <div class="row">
-        <p>Cari Ruko dalam radius 1 km</p>
+        <p>Cari Ruko dalam radius 500 m</p>
         <div id="mapSewa" class="map"></div>
 
         <div class="col-md-12 mt-5">
@@ -249,7 +249,7 @@
         color: 'blue',
         fillColor: 'blue',
         fillOpacity: 0.3,
-        radius: 3000 // Radius dalam meter
+        radius: 500 // Radius dalam meter
       }).addTo(mapSewa);
     }
 

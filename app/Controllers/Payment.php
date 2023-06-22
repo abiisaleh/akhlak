@@ -21,10 +21,27 @@ class Payment extends BaseController
         $persentase = 1; //persentase biaya admin
         $admin = $harga * $persentase / 100;
 
+        $total = $harga + $admin;
+
+        //tambahkan ke data pesanan
+        $pesanan = [
+            'fkRuko'        => $data['idRuko'],
+            'nama'          => $data['nama'],
+            'telp'          => $data['telp'],
+            'tanggal'       => date('now'),
+            'total'         => $total,
+            'pembayaran'    => 'pending',
+        ];
+        $PesananModel = new PesananModel;
+        $PesananModel->insert($pesanan);
+        $idPesanan = $PesananModel->getInsertID();
+
+        session()->set('pesanan', $idPesanan);
+
         // Melakukan pembayaran menggunakan Xendit
         $params = array(
             'external_id' => 'SEWARUKO-123',
-            'amount' => $harga + $admin,
+            'amount' => $total,
             'description' => 'DP Sewa Ruko',
             'currency' => 'IDR',
             'invoice_duration' => 86400,
@@ -96,24 +113,17 @@ class Payment extends BaseController
         $response = \Xendit\Disbursements::create($params);
 
         //ubah status menjadi terjual
-        $ruko = [
-            'idRuko' => $data['idRuko'],
-            'status' => 1
-        ];
         $RukoModel = new RukoModel;
-        $RukoModel->save($ruko);
+        dd($RukoModel->update($data['idRuko'], ['status' => 2]));
 
+        $idPesanan = session()->get('pesanan');
         //tambahkan ke data pesanan
         $pesanan = [
-            'fkRuko'        => $data['idRuko'],
-            'nama'          => '',
-            'telp'          => '',
-            'tanggal'       => date('now'),
-            'total'         => $total,
-            'pembayaran'    => '',
+            'idPesanan'     => $idPesanan,
+            'pembayaran'    => 'lunas',
         ];
         $PesananModel = new PesananModel;
-        $PesananModel->insert($pesanan);
+        $PesananModel->save($pesanan);
 
         return view('pages/user/sewa-berhasil');
     }
