@@ -75,7 +75,7 @@ class User extends BaseController
                 $fasilitasModel->where('fkSubkriteria', $DataKriteria['value']);
             }
         }
-        $fasilitasModel->whereIn('fkRuko', $rukoID);
+        $fasilitasModel->whereIn('fkRuko', $rukoID)->select('fkRuko')->groupBy('fkRuko');
         $hasil = $fasilitasModel->find();
 
         if ($hasil == null) {
