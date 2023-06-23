@@ -43,11 +43,19 @@
           </form>
         </div>
       </div>
-      <?php foreach ($ruko as $item) : ?>
-        <div class="col-md-4">
-          <?= view_cell('CardRukoCell', ['idRuko' => $item['idRuko'], 'skor' => $item['V']]) ?>
+      <?php if (is_null($ruko)) : ?>
+        <div class="alert alert-danger" role="alert">
+          <h4 class="alert-heading"></h4>
+          <p>Ruko tidak ditemukan</p>
+          <p class="mb-0"></p>
         </div>
-      <?php endforeach; ?>
+      <?php else : ?>
+        <?php foreach ($ruko as $item) : ?>
+          <div class="col-md-4">
+            <?= view_cell('CardRukoCell', ['idRuko' => $item['idRuko'], 'skor' => $item['V']]) ?>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
     <div class="row">
       <div class="col-sm-12">

@@ -77,6 +77,11 @@ class User extends BaseController
         }
         $fasilitasModel->whereIn('fkRuko', $rukoID);
         $hasil = $fasilitasModel->find();
+
+        if ($hasil == null) {
+            return session()->set('ruko', null);
+        }
+
         //ekstrak hasil
         foreach ($hasil as $value) {
             $DataRuko[] = $value['fkRuko'];
