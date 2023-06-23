@@ -66,20 +66,22 @@
         <?php $kriteria = model('KriteriaModel')->find(); ?>
         <?php $subkriteria = model('SubkriteriaModel'); ?>
 
-        <form id="form-kriteria">
-          <?php foreach ($kriteria as $Kriteria) : ?>
-            <div class="col-md-6 mb-2">
-              <div class="form-group mt-3">
-                <label class="pb-2" for="input<?= $Kriteria['kriteria'] ?>"><?= $Kriteria['kriteria'] ?></label>
-                <select class="form-control form-select form-control-a" name="<?= $Kriteria['idKriteria'] ?>" id="input<?= $Kriteria['kriteria'] ?>">
-                  <option>-</option>
-                  <?php foreach ($subkriteria->where('fkKriteria', $Kriteria['idKriteria'])->find() as $Subkriteria) : ?>
-                    <option value="<?= $Subkriteria['idSubkriteria'] ?>"><?= $Subkriteria['subkriteria'] ?></option>
-                  <?php endforeach; ?>
-                </select>
+        <form id="form-kriteria" method="post">
+          <div class="row">
+            <?php foreach ($kriteria as $Kriteria) : ?>
+              <div class="col-md-6 mb-2">
+                <div class="form-group mt-3">
+                  <label class="pb-2" for="input<?= $Kriteria['kriteria'] ?>"><?= $Kriteria['kriteria'] ?></label>
+                  <select class="form-control form-select form-control-a" name="<?= $Kriteria['idKriteria'] ?>" id="input<?= $Kriteria['kriteria'] ?>">
+                    <option>-</option>
+                    <?php foreach ($subkriteria->where('fkKriteria', $Kriteria['idKriteria'])->find() as $Subkriteria) : ?>
+                      <option value="<?= $Subkriteria['idSubkriteria'] ?>"><?= $Subkriteria['subkriteria'] ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
               </div>
-            </div>
-          <?php endforeach; ?>
+            <?php endforeach; ?>
+          </div>
         </form>
 
         <div class="col-md-12 mt-5">
@@ -288,17 +290,16 @@
         }
       });
 
-      //get input data
-      var formData = $('#form-kriteria').serialize()
+      console.log($('#form-kriteria').serializeArray())
 
       // Mengirim markersInRadius menggunakan Ajax (jQuery)
       $.ajax({
         url: 'search',
         type: 'POST',
-        contentType: 'application/json',
+        // contentType: 'application/json',
         data: {
-          'map': JSON.stringify(markersInRadius),
-          'kriteria': formData,
+          'ruko': markersInRadius,
+          'kriteria': $('#form-kriteria').serializeArray(),
         },
         success: function(response) {
           window.location.href = '<?= base_url('rekomendasi') ?>'

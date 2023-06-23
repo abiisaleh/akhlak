@@ -1,4 +1,4 @@
-<?php $Ruko = model('RukoModel')->find($idRuko) ?>
+<?php $Ruko = model('RukoModel')->find($idRuko); ?>
 <div class="card-box-a card-shadow">
     <?php if ($skor) : ?>
         <span class="badge bg-dark p-3 m-2 position-absolute top-10 start-0">skor: <?= $skor ?></span>

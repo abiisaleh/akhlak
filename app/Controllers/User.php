@@ -63,14 +63,29 @@ class User extends BaseController
 
     public function search()
     {
-        $rukoID = $this->request->getVar();
-        $ruko = $this->RukoModel->find($rukoID);
+        $rukoID = $this->request->getVar('ruko');
+        $dataKriteria = $this->request->getVar('kriteria');
+
         $kriteria = model('KriteriaModel')->findAll();
         $fasilitasModel = model('FasilitasModel');
         $subkriteriaModel = model('SubkriteriaModel');
 
+        foreach ($dataKriteria as $DataKriteria) {
+            if ($DataKriteria['value'] != '-') {
+                $fasilitasModel->where('fkSubkriteria', $DataKriteria['value']);
+            }
+        }
+        $fasilitasModel->whereIn('fkRuko', $rukoID);
+        $hasil = $fasilitasModel->find();
+        //ekstrak hasil
+        foreach ($hasil as $value) {
+            $DataRuko[] = $value['fkRuko'];
+        }
+
+        $ruko = $this->RukoModel->find($DataRuko);
+
         $i = 0;
-        foreach ($rukoID as $ruko) {
+        foreach ($DataRuko as $ruko) {
             $data[$i]['idRuko'] = $ruko;
             foreach ($kriteria as $Kriteria) {
                 $fkSubkriteria = $fasilitasModel->where('fkRuko', $ruko)->where('fkKriteria', $Kriteria['idKriteria'])->first()['fkSubkriteria'];
