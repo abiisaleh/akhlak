@@ -103,7 +103,6 @@ class User extends BaseController
 
     public function search()
     {
-        // $rukoID = $this->request->getVar('ruko');
         $dataKriteria = $this->request->getVar();
 
         $kriteria = model('KriteriaModel')->findAll();
