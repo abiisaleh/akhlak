@@ -2,7 +2,7 @@
 
 <?php $this->section('content'); ?>
 <?php $data['field'] = ['Ruko', 'Nama', 'Telp', 'Tanggal', 'Total', 'Pembayaran'] ?>
-<?= view('component/tabel', $data) ?>
+<?= view('component/tabelR', $data) ?>
 
 <!-- modal -->
 <div class="modal fade" id="modal-add">

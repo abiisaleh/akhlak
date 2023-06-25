@@ -1,9 +1,13 @@
 <?php $this->extend('layout/admin'); ?>
 
 <?php $this->section('content'); ?>
-
 <?php $data['field'] = ['Alamat', 'Harga', 'Pemilik', 'Telp', 'Verifikasi', 'Status'] ?>
-<?= view('component/tabel', $data) ?>
+<?php if (in_groups('admin')) : ?>
+  <?= view('component/tabel', $data) ?>
+<?php else : ?>
+  <?= view('component/tabelR', $data) ?>
+<?php endif ?>
+
 
 <!-- modal -->
 <div class="modal fade" id="modal-add">
