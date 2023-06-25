@@ -6,8 +6,6 @@ use App\Controllers\BaseController;
 use App\Models\RukoModel;
 use App\Models\UserModel;
 
-use function PHPUnit\Framework\isEmpty;
-
 class User extends BaseController
 {
     protected $RukoModel;
@@ -29,6 +27,7 @@ class User extends BaseController
     public function rekomendasi()
     {
         $data['ruko'] = session()->get('ruko');
+        $data['perhitungan'] = session()->get('perhitungan');
         return view('pages/user/rekomendasi', $data);
     }
 
@@ -106,6 +105,9 @@ class User extends BaseController
         $dataKriteria = $this->request->getVar();
 
         $kriteria = model('KriteriaModel')->findAll();
+        // simpan data kriteria
+        $perhitungan['kriteria'] = $kriteria;
+
         $fasilitasModel = model('FasilitasModel');
         $subkriteriaModel = model('SubkriteriaModel');
 
@@ -128,6 +130,8 @@ class User extends BaseController
         }
 
         $ruko = $this->RukoModel->find($DataRuko);
+
+        $perhitungan['alternatif'] = $ruko;
 
         $i = 0;
         foreach ($DataRuko as $ruko) {
@@ -179,6 +183,7 @@ class User extends BaseController
             return $b['V'] - $a['V'];
         });
 
+        session()->set('perhitungan', $perhitungan);
         session()->set('ruko', $data);
         return redirect()->to('rekomendasi');
     }

@@ -50,4 +50,14 @@ class FasilitasModel extends Model
         $id = $this->where('fkRuko', $ruko)->where('fkKriteria', $kriteria)->first();
         return $id;
     }
+
+    public function joinruko()
+    {
+        return $this->join('ruko', 'fkRuko = idRuko');
+    }
+
+    public function joinsubkriteria()
+    {
+        return $this->join('subkriteria', 'fksubkriteria = idsubkriteria');
+    }
 }

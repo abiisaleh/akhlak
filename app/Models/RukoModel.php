@@ -54,6 +54,14 @@ class RukoModel extends Model
             ->select('ruko.*, kriteria, subkriteria');
     }
 
+    public function fasilitasRuko()
+    {
+        return $this
+            ->join('fasilitas', 'fasilitas.fkRuko = ruko.idRuko', 'LEFT')
+            ->join('subkriteria', 'subkriteria.idSubkriteria = fasilitas.fkSubkriteria', 'LEFT')
+            ->select('ruko.*, subkriteria');
+    }
+
     public function verifikasi()
     {
         return $this->where('verifikasi', '1');
