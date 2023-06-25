@@ -34,6 +34,7 @@ $routes->get('rekomendasi', 'User::rekomendasi');
 $routes->get('ruko(:any)', 'User::ruko$1');
 $routes->post('daftar', 'User::daftar');
 $routes->post('search', 'User::search');
+$routes->post('filter', 'User::filter');
 
 $routes->post('sewa', 'Payment::sewa');
 $routes->get('sewa/berhasil', 'Payment::berhasil');

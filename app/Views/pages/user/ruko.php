@@ -44,9 +44,7 @@
         </div>
       </div>
       <?php foreach ($ruko as $item) : ?>
-        <div class="col-md-4">
-          <?= view_cell('CardRukoCell', ['idRuko' => $item['idRuko']]) ?>
-        </div>
+        <?= view_cell('CardRukoCell', ['idRuko' => $item['idRuko']]) ?>
       <?php endforeach; ?>
     </div>
     <div class="row">

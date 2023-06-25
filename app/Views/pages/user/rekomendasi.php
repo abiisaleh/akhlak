@@ -51,9 +51,7 @@
         </div>
       <?php else : ?>
         <?php foreach ($ruko as $item) : ?>
-          <div class="col-md-4">
-            <?= view_cell('CardRukoCell', ['idRuko' => $item['idRuko'], 'skor' => $item['V']]) ?>
-          </div>
+          <?= view_cell('CardRukoCell', ['idRuko' => $item['idRuko'], 'skor' => $item['V']]) ?>
         <?php endforeach; ?>
       <?php endif; ?>
     </div>

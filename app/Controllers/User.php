@@ -6,6 +6,8 @@ use App\Controllers\BaseController;
 use App\Models\RukoModel;
 use App\Models\UserModel;
 
+use function PHPUnit\Framework\isEmpty;
+
 class User extends BaseController
 {
     protected $RukoModel;
@@ -30,8 +32,11 @@ class User extends BaseController
         return view('pages/user/rekomendasi', $data);
     }
 
-    public function ruko($id = null)
+    public function ruko($id = null, $ruko = null)
     {
+        $ruko = session()->getFlashdata('ruko');
+
+
         if ($id) {
             $data = [
                 'ruko' => $this->RukoModel->find($id)
@@ -46,7 +51,42 @@ class User extends BaseController
             $view = 'pages/user/ruko';
         }
 
+        if ($ruko != null) {
+            $data = [
+                'ruko' => $this->RukoModel->find($ruko)
+            ];
+
+            $view = 'pages/user/ruko';
+        }
+
         return view($view, $data);
+    }
+
+    public function filter()
+    {
+        $dataKriteria = $this->request->getVar();
+
+        $fasilitasModel = model('FasilitasModel');
+
+        foreach ($dataKriteria as $value) {
+            if ($value != '-') {
+                $fasilitasModel->where('fkSubkriteria', $value);
+            }
+        }
+        $fasilitasModel->select('fkRuko')->groupBy('fkRuko');
+        $hasil = $fasilitasModel->find();
+
+        if ($hasil == null) {
+            session()->set('ruko', null);
+            return redirect()->to('rekomendasi');
+        }
+
+        //ekstrak hasil
+        foreach ($hasil as $value) {
+            $DataRuko[] = $value['fkRuko'];
+        }
+
+        session()->setFlashdata('ruko', $DataRuko);
     }
 
     public function daftar()
@@ -63,23 +103,24 @@ class User extends BaseController
 
     public function search()
     {
-        $rukoID = $this->request->getVar('ruko');
-        $dataKriteria = $this->request->getVar('kriteria');
+        // $rukoID = $this->request->getVar('ruko');
+        $dataKriteria = $this->request->getVar();
 
         $kriteria = model('KriteriaModel')->findAll();
         $fasilitasModel = model('FasilitasModel');
         $subkriteriaModel = model('SubkriteriaModel');
 
-        foreach ($dataKriteria as $DataKriteria) {
-            if ($DataKriteria['value'] != '-') {
-                $fasilitasModel->where('fkSubkriteria', $DataKriteria['value']);
+        foreach ($dataKriteria as $value) {
+            if ($value != '-') {
+                $fasilitasModel->where('fkSubkriteria', $value);
             }
         }
-        $fasilitasModel->whereIn('fkRuko', $rukoID)->select('fkRuko')->groupBy('fkRuko');
+        $fasilitasModel->select('fkRuko')->groupBy('fkRuko');
         $hasil = $fasilitasModel->find();
 
         if ($hasil == null) {
-            return session()->set('ruko', null);
+            session()->set('ruko', null);
+            return redirect()->to('rekomendasi');
         }
 
         //ekstrak hasil
@@ -140,5 +181,6 @@ class User extends BaseController
         });
 
         session()->set('ruko', $data);
+        return redirect()->to('rekomendasi');
     }
 }

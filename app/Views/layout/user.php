@@ -59,14 +59,14 @@
     <span class="close-box-collapse right-boxed bi bi-x"></span>
     <div class="box-collapse-wrap form">
       <div class="row">
-        <p>Cari Ruko dalam radius 500 m</p>
+        <!-- <p>Cari Ruko dalam radius 500 m</p> -->
         <div id="mapSewa" class="map"></div>
 
 
         <?php $kriteria = model('KriteriaModel')->find(); ?>
         <?php $subkriteria = model('SubkriteriaModel'); ?>
 
-        <form id="form-kriteria" method="post">
+        <form action="search" id="form-kriteria" method="post">
           <div class="row">
             <?php foreach ($kriteria as $Kriteria) : ?>
               <div class="col-md-6 mb-2">
@@ -82,11 +82,12 @@
               </div>
             <?php endforeach; ?>
           </div>
-        </form>
 
-        <div class="col-md-12 mt-5">
-          <button type="button" id="btn-search" class="btn btn-b">Temukan Ruko</button>
-        </div>
+          <div class="col-md-12 mt-5">
+            <button type="button" class="btn btn-b btn-filter">Filter</button>
+            <button type="submit" class="btn btn-b">Rekomendasi</button>
+          </div>
+        </form>
       </div>
     </div>
   </div><!-- End Property Search Section -->>
@@ -254,55 +255,17 @@
     }).addTo(mapSewa);
 
     var marker = null; // Global marker variable
-    var radius;
 
-    function onMapClickSewa(e) {
-      // Hapus marker dan radius sebelumnya (jika ada)
-      if (marker) {
-        mapSewa.removeLayer(marker);
-      }
-      if (radius) {
-        mapSewa.removeLayer(radius);
-      }
+    // mapSewa.on('click', onMapClickSewa);
 
-      // Tambahkan radius pada marker
-      radius = L.circle(e.latlng, {
-        color: 'blue',
-        fillColor: 'blue',
-        fillOpacity: 0.3,
-        radius: 500 // Radius dalam meter
-      }).addTo(mapSewa);
-    }
-
-    mapSewa.on('click', onMapClickSewa);
-
-    $('#btn-search').on('click', function() {
-      // Array untuk menyimpan marker dalam radius
-      var markersInRadius = [];
-
-      // Loop melalui data marker
-      markerData.forEach(function(marker) {
-        var markerLatLng = L.latLng(marker.latlng);
-
-        // Memeriksa apakah marker berada dalam batas-batas lingkaran
-        if (radius.getBounds().contains(markerLatLng)) {
-          markersInRadius.push(marker.id);
-        }
-      });
-
-      console.log($('#form-kriteria').serializeArray())
-
+    $('.btn-filter').on('click', function() {
       // Mengirim markersInRadius menggunakan Ajax (jQuery)
       $.ajax({
-        url: 'search',
+        url: 'filter',
         type: 'POST',
-        // contentType: 'application/json',
-        data: {
-          'ruko': markersInRadius,
-          'kriteria': $('#form-kriteria').serializeArray(),
-        },
+        data: $('#form-kriteria').serializeArray(),
         success: function(response) {
-          window.location.href = '<?= base_url('rekomendasi') ?>'
+          window.location.href = '<?= base_url('ruko') ?>'
         },
         error: function(jqXHR, textStatus, errorThrown) {
           // Handle error jika terjadi kesalahan
