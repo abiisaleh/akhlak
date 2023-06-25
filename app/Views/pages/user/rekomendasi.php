@@ -31,7 +31,7 @@
 <section class="property-grid grid">
   <div class="container">
     <div class="row">
-      <?php if (is_null($ruko)) : ?>
+      <?php if (!is_null($ruko)) : ?>
         <div class="col-sm-12">
           <div class="card text-left">
             <div class="card-body">
