@@ -31,21 +31,15 @@
 <section class="property-grid grid">
   <div class="container">
     <div class="row">
-      <div class="col-sm-12">
-        <div class="grid-option">
-          <form>
-            <select class="custom-select">
-              <option selected>All</option>
-              <option value="1">New to Old</option>
-              <option value="2">For Rent</option>
-              <option value="3">For Sale</option>
-            </select>
-          </form>
+      <?php if (!$ruko) : ?>
+        <div class="alert alert-danger" role="alert">
+          <p>Data tidak ditemukan</p>
         </div>
-      </div>
-      <?php foreach ($ruko as $item) : ?>
-        <?= view_cell('CardRukoCell', ['idRuko' => $item['idRuko']]) ?>
-      <?php endforeach; ?>
+      <?php else : ?>
+        <?php foreach ($ruko as $item) : ?>
+          <?= view_cell('CardRukoCell', ['idRuko' => $item['idRuko']]) ?>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
     <div class="row">
       <div class="col-sm-12">

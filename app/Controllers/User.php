@@ -35,26 +35,17 @@ class User extends BaseController
     {
         $ruko = session()->getFlashdata('ruko');
 
-
-        if ($id) {
-            $data = [
-                'ruko' => $this->RukoModel->find($id)
-            ];
-
+        if ($id == 'semua') {
+            $data = ['ruko' => $this->RukoModel->findAll()];
+            $view = 'pages/user/ruko';
+        } elseif ($ruko != null) {
+            $data = ['ruko' => $this->RukoModel->find($ruko)];
+            $view = 'pages/user/ruko';
+        } elseif ($id) {
+            $data = ['ruko' => $this->RukoModel->find($id)];
             $view = 'pages/user/detailRuko';
         } else {
-            $data = [
-                'ruko' => $this->RukoModel->findAll()
-            ];
-
-            $view = 'pages/user/ruko';
-        }
-
-        if ($ruko != null) {
-            $data = [
-                'ruko' => $this->RukoModel->find($ruko)
-            ];
-
+            $data['ruko'] = null;
             $view = 'pages/user/ruko';
         }
 
@@ -69,7 +60,7 @@ class User extends BaseController
 
         foreach ($dataKriteria as $value) {
             if ($value != '-') {
-                $fasilitasModel->where('fkSubkriteria', $value);
+                $fasilitasModel->orwhere('fkSubkriteria', $value);
             }
         }
         $fasilitasModel->select('fkRuko')->groupBy('fkRuko');
@@ -113,7 +104,7 @@ class User extends BaseController
 
         foreach ($dataKriteria as $value) {
             if ($value != '-') {
-                $fasilitasModel->where('fkSubkriteria', $value);
+                $fasilitasModel->orwhere('fkSubkriteria', $value);
             }
         }
         $fasilitasModel->select('fkRuko')->groupBy('fkRuko');
