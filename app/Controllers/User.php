@@ -56,15 +56,23 @@ class User extends BaseController
     {
         $dataKriteria = $this->request->getVar();
 
-        $fasilitasModel = model('FasilitasModel');
+        $ruko = $this->RukoModel->find();
 
-        foreach ($dataKriteria as $value) {
-            if ($value != '-') {
-                $fasilitasModel->orwhere('fkSubkriteria', $value);
+
+        foreach ($ruko as $Ruko) {
+            $fasilitasModel = model('FasilitasModel');
+            $fasilitasModel->where('fkRuko', $Ruko['idRuko']);
+
+            $hasil = 1;
+            foreach ($dataKriteria as $kriteria) {
+                if ($kriteria != '-') {
+                    if ($hasil != null) {
+                        $hasil = $fasilitasModel->where('fkSubkriteria', $kriteria)->find();
+                    }
+                }
             }
         }
-        $fasilitasModel->select('fkRuko')->groupBy('fkRuko');
-        $hasil = $fasilitasModel->find();
+
 
         if ($hasil == null) {
             session()->set('ruko', null);
@@ -93,22 +101,50 @@ class User extends BaseController
 
     public function search()
     {
+        // $dataKriteria = $this->request->getVar();
+
+        // $kriteria = model('KriteriaModel')->findAll();
+        // // simpan data kriteria
+        // $perhitungan['kriteria'] = $kriteria;
+
+        // $fasilitasModel = model('FasilitasModel');
+        // $subkriteriaModel = model('SubkriteriaModel');
+
+        // foreach ($dataKriteria as $value) {
+        //     if ($value != '-') {
+        //         $fasilitasModel->orwhere('fkSubkriteria', $value);
+        //     }
+        // }
+        // $fasilitasModel->select('fkRuko')->groupBy('fkRuko');
+        // $hasil = $fasilitasModel->find();
+
+
+
+
+
+
+
         $dataKriteria = $this->request->getVar();
 
-        $kriteria = model('KriteriaModel')->findAll();
-        // simpan data kriteria
-        $perhitungan['kriteria'] = $kriteria;
+        $ruko = $this->RukoModel->find();
 
-        $fasilitasModel = model('FasilitasModel');
-        $subkriteriaModel = model('SubkriteriaModel');
 
-        foreach ($dataKriteria as $value) {
-            if ($value != '-') {
-                $fasilitasModel->orwhere('fkSubkriteria', $value);
+        foreach ($ruko as $Ruko) {
+            $fasilitasModel = model('FasilitasModel');
+            $fasilitasModel->where('fkRuko', $Ruko['idRuko']);
+
+            $hasil = 1;
+            foreach ($dataKriteria as $kriteria) {
+                if ($kriteria != '-') {
+                    if ($hasil != null) {
+                        $hasil = $fasilitasModel->where('fkSubkriteria', $kriteria)->find();
+                    }
+                }
             }
         }
-        $fasilitasModel->select('fkRuko')->groupBy('fkRuko');
-        $hasil = $fasilitasModel->find();
+
+
+
 
         if ($hasil == null) {
             session()->set('ruko', null);
@@ -121,7 +157,11 @@ class User extends BaseController
         }
 
         $ruko = $this->RukoModel->find($DataRuko);
+        $kriteria = model('KriteriaModel')->findAll();
+        $subkriteriaModel = model('SubkriteriaModel');
 
+
+        $perhitungan['kriteria'] = $kriteria;
         $perhitungan['alternatif'] = $ruko;
 
         $i = 0;
