@@ -58,21 +58,24 @@ class User extends BaseController
 
         $ruko = $this->RukoModel->find();
 
-
         foreach ($ruko as $Ruko) {
+            print_r($Ruko['idRuko']);
             $fasilitasModel = model('FasilitasModel');
-            $fasilitasModel->where('fkRuko', $Ruko['idRuko']);
 
             $hasil = 1;
             foreach ($dataKriteria as $kriteria) {
                 if ($kriteria != '-') {
                     if ($hasil != null) {
-                        $hasil = $fasilitasModel->where('fkSubkriteria', $kriteria)->find();
+                        $hasil = $fasilitasModel->where('fkRuko', $Ruko['idRuko'])->where('fkSubkriteria', $kriteria)->find();
                     }
                 }
             }
+            if ($hasil != null) {
+                $rukoHasil[] = $hasil;
+            }
         }
 
+        $hasil = $rukoHasil ?? null;
 
         if ($hasil == null) {
             session()->set('ruko', null);
@@ -81,7 +84,7 @@ class User extends BaseController
 
         //ekstrak hasil
         foreach ($hasil as $value) {
-            $DataRuko[] = $value['fkRuko'];
+            $DataRuko[] = $value['0']['fkRuko'];
         }
 
         session()->setFlashdata('ruko', $DataRuko);
@@ -131,17 +134,21 @@ class User extends BaseController
 
         foreach ($ruko as $Ruko) {
             $fasilitasModel = model('FasilitasModel');
-            $fasilitasModel->where('fkRuko', $Ruko['idRuko']);
 
             $hasil = 1;
             foreach ($dataKriteria as $kriteria) {
                 if ($kriteria != '-') {
                     if ($hasil != null) {
-                        $hasil = $fasilitasModel->where('fkSubkriteria', $kriteria)->find();
+                        $hasil = $fasilitasModel->where('fkRuko', $Ruko['idRuko'])->where('fkSubkriteria', $kriteria)->find();
                     }
                 }
             }
+            if ($hasil != null) {
+                $rukoHasil[] = $hasil;
+            }
         }
+
+        $hasil = $rukoHasil ?? null;
 
 
 
@@ -153,7 +160,7 @@ class User extends BaseController
 
         //ekstrak hasil
         foreach ($hasil as $value) {
-            $DataRuko[] = $value['fkRuko'];
+            $DataRuko[] = $value[0]['fkRuko'];
         }
 
         $ruko = $this->RukoModel->find($DataRuko);

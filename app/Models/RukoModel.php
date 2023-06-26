@@ -64,6 +64,6 @@ class RukoModel extends Model
 
     public function verifikasi()
     {
-        return $this->where('verifikasi', '1')->where('status', '0');
+        return $this->where('verifikasi', '1');
     }
 }
