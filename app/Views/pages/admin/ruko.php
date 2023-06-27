@@ -60,8 +60,8 @@
             <label for="selectstatus" class="col-sm-4 col-form-label">Status</label>
             <div class="col-sm-8">
               <select class="form-control" id="selectstatus" name="status">
-                <option value="0">dijual</option>
-                <option value="1">terjual</option>
+                <option value="0">disewakan</option>
+                <option value="1">sudah disewa</option>
               </select>
             </div>
           </div>
