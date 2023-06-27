@@ -159,9 +159,9 @@
           "data": "status",
           "render": function(data) {
             if (data.verifikasi == 1) {
-              return "<span class='badge bg-success'>disewa</span>"
+              return "<span class='badge bg-success'>sudah disewa</span>"
             } else {
-              return "<span class='badge bg-warning'>kosong</span>"
+              return "<span class='badge bg-warning'>disewakan</span>"
             }
           }
         },
