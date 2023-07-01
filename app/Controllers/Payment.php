@@ -114,7 +114,7 @@ class Payment extends BaseController
 
         //ubah status menjadi terjual
         $RukoModel = new RukoModel;
-        dd($RukoModel->update($data['idRuko'], ['status' => 2]));
+        $RukoModel->update($data['idRuko'], ['status' => 2]);
 
         $idPesanan = session()->get('pesanan');
         //tambahkan ke data pesanan

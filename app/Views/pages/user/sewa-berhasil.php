@@ -18,7 +18,7 @@
                 <strong>Ruko berhasil disewa. silahkan menghubungi pemilik ruko untuk proses kepemilikan.</strong>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-6">
                 <div class="card-box-c foo">
                     <div class="card-body-c">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section><!-- End Services Section -->
 <?php $this->endSection(); ?>

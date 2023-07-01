@@ -138,7 +138,7 @@
             <h2 class="title-a">Ruko Terbaru</h2>
           </div>
           <div class="title-link">
-            <a href="ruko">Semua Ruko
+            <a href="ruko/semua">Semua Ruko
               <span class="bi bi-chevron-right"></span>
             </a>
           </div>
