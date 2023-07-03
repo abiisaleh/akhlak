@@ -49,5 +49,9 @@ class Pesanan extends BaseController
     {
         $id = $this->request->getVar('id');
         $this->PesananModel->delete($id);
+
+        //ubah status ruko menjadi disewakan
+        $idRuko = $this->PesananModel->find($id)['fkRuko'];
+        model('RukoModel')->update($idRuko, ['status' => 0]);
     }
 }
