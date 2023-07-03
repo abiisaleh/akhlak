@@ -9,7 +9,7 @@
                 <table id="tabel" class="table table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>#</th>
+                      <th>ID</th>
                       <?php foreach ($field as $value) : ?>
                         <th><?= $value ?></th>
                       <?php endforeach; ?>

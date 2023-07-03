@@ -116,15 +116,20 @@
                     {
                         "data": "pembayaran"
                     },
-                    {
-                        "data": ""
-                    },
+                    <?php if (in_groups('admin')) : ?>
+
+                        {
+                            "data": ""
+                        },
+                    <?php endif ?>
                 ],
-                columnDefs: [{
-                    "targets": -1,
-                    "data": null,
-                    "defaultContent": "<button class='btn btn-sm btn-danger btnHapus'>Hapus</button> <button class='btn btn-sm btn-warning btnEdit'>Edit</button>"
-                }, ]
+                <?php if (in_groups('admin')) : ?>
+                    columnDefs: [{
+                        "targets": -1,
+                        "data": null,
+                        "defaultContent": "<button class='btn btn-sm btn-danger btnHapus'>Hapus</button> <button class='btn btn-sm btn-warning btnEdit'>Edit</button>"
+                    }]
+                <?php endif ?>
             })
 
             //Tambah Data
@@ -145,7 +150,7 @@
             //Hapus Data
             $('#tabel tbody').on('click', '.btnHapus', function() {
                 var data = dataTable.row($(this).parents('tr')).data()
-                var id = data.idSubkriteria
+                var id = data.idPesanan
 
                 if (confirm('Anda yakin ingin menghapus data ini?')) {
                     $.ajax({

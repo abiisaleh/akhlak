@@ -96,7 +96,6 @@ class Payment extends BaseController
     public function berhasil()
     {
         $data = session()->get('ruko');
-        $total = session()->get('total');
 
         //kirim uang sewa ke pemilik ruko
         Xendit::setApiKey('xnd_development_5J1A8ar7422uMjI2O6rEGV7n25MMGVAVE2NvTuTwaV8fuzaZqqO0ZBjVJ61nRma');
@@ -117,13 +116,10 @@ class Payment extends BaseController
         $RukoModel->update($data['idRuko'], ['status' => 2]);
 
         $idPesanan = session()->get('pesanan');
+
         //tambahkan ke data pesanan
-        $pesanan = [
-            'idPesanan'     => $idPesanan,
-            'pembayaran'    => 'lunas',
-        ];
         $PesananModel = new PesananModel;
-        $PesananModel->save($pesanan);
+        $PesananModel->update($idPesanan, ['pembayaran' => 'lunas']);
 
         return view('pages/user/sewa-berhasil');
     }

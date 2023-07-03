@@ -15,7 +15,7 @@
             dom: 'Bfrtip',
             buttons: ["print"],
             processing: true,
-            ajax: window.location.href + '/show',
+            ajax: '<?= base_url('admin/pesanan/show') ?>',
             columns: [{
                     "data": "idPesanan"
                 },
