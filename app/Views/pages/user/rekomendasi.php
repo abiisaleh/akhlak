@@ -32,7 +32,7 @@
   <div class="container">
     <div class="row">
       <?php if (!is_null($ruko)) : ?>
-        <div class="col-sm-12">
+        <div class="col-sm-12 mb-5">
           <div class="card text-left">
             <div class="card-body">
               <h4 class="card-title">Perhitungan</h4>
