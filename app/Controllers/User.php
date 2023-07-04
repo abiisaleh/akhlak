@@ -189,6 +189,7 @@ class User extends BaseController
                 }
                 $Ruko['rating_' . $Kriteria['kriteria']] = round($rating, 2);
                 $nilaiV[] = $rating * $Kriteria['bobot'];
+                $Ruko['V_' . $Kriteria['kriteria']] = round($rating * $Kriteria['bobot'], 2);
             }
             $Ruko['V'] = round(array_sum($nilaiV) / 100, 3);
             $nilaiV = []; //reset nilai v

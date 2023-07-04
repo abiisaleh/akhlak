@@ -36,122 +36,149 @@
           <div class="card text-left">
             <div class="card-body">
               <h4 class="card-title">Perhitungan</h4>
-              <p class="card-text">Tabel Kriteria</p>
-              <div class="col-md-6">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Kriteria (C)</th>
-                      <th>Bobot Ternormalisasi (W)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($perhitungan['kriteria'] as $kriteria) : ?>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="card-text">Tabel Kriteria</p>
+                  <table class="table">
+                    <thead>
                       <tr>
-                        <td><?= $kriteria['kriteria'] ?></td>
-                        <td><?= $kriteria['bobot'] / 100 ?></td>
+                        <th>No</th>
+                        <th>Kriteria (C)</th>
+                        <th>Bobot Ternormalisasi (W)</th>
                       </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                </table>
-              </div>
-              <p class="card-text">Tabel Alternatif</p>
-              <div class="col-md-6">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>id Ruko</th>
-                      <th>C1</th>
-                      <th>C2</th>
-                      <th>C3</th>
-                      <th>C4</th>
-                      <th>C5</th>
-                      <th>C6</th>
-                      <th>C7</th>
-                      <th>C8</th>
-                      <th>C9</th>
-                      <th>C10</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($ruko as $alternatif) : ?>
+                    </thead>
+                    <tbody>
+                      <?php $i = 1;
+                      foreach ($perhitungan['kriteria'] as $kriteria) : ?>
+                        <tr>
+                          <td><?= $i++ ?></td>
+                          <td><?= $kriteria['kriteria'] ?></td>
+                          <td><?= $kriteria['bobot'] / 100 ?></td>
+                        </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-12">
+                      <p class="card-text">Tabel Alternatif</p>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>id Ruko</th>
+                            <th>C1</th>
+                            <th>C2</th>
+                            <th>C3</th>
+                            <th>C4</th>
+                            <th>C5</th>
+                            <th>C6</th>
+                            <th>C7</th>
+                            <th>C8</th>
+                            <th>C9</th>
+                            <th>C10</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach ($ruko as $alternatif) : ?>
+                            <tr>
+                              <td><?= $alternatif['idRuko'] ?></td>
+                              <td><?= $alternatif['harga'] ?></td>
+                              <td><?= $alternatif['ukuran'] ?></td>
+                              <td><?= $alternatif['lokasi'] ?></td>
+                              <td><?= $alternatif['fasilitas'] ?></td>
+                              <td><?= $alternatif['kondisi jalan'] ?></td>
+                              <td><?= $alternatif['lingkungan'] ?></td>
+                              <td><?= $alternatif['listrik'] ?></td>
+                              <td><?= $alternatif['lantai'] ?></td>
+                              <td><?= $alternatif['halaman parkir'] ?></td>
+                              <td><?= $alternatif['air'] ?></td>
+                            </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="col-12">
+                      <p class="card-text">Nilai Rating Kinerja Ternormalisasi</p>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>id Ruko</th>
+                            <th>C1</th>
+                            <th>C2</th>
+                            <th>C3</th>
+                            <th>C4</th>
+                            <th>C5</th>
+                            <th>C6</th>
+                            <th>C7</th>
+                            <th>C8</th>
+                            <th>C9</th>
+                            <th>C10</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach ($ruko as $alternatif) : ?>
+                            <tr>
+                              <td><?= $alternatif['idRuko'] ?></td>
+                              <td><?= $alternatif['rating_harga'] ?></td>
+                              <td><?= $alternatif['rating_ukuran'] ?></td>
+                              <td><?= $alternatif['rating_lokasi'] ?></td>
+                              <td><?= $alternatif['rating_fasilitas'] ?></td>
+                              <td><?= $alternatif['rating_kondisi jalan'] ?></td>
+                              <td><?= $alternatif['rating_lingkungan'] ?></td>
+                              <td><?= $alternatif['rating_listrik'] ?></td>
+                              <td><?= $alternatif['rating_lantai'] ?></td>
+                              <td><?= $alternatif['rating_halaman parkir'] ?></td>
+                              <td><?= $alternatif['rating_air'] ?></td>
+                            </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <p class="card-text">Hasil</p>
+                  <table class="table">
+                    <thead>
                       <tr>
-                        <td><?= $alternatif['idRuko'] ?></td>
-                        <td><?= $alternatif['harga'] ?></td>
-                        <td><?= $alternatif['ukuran'] ?></td>
-                        <td><?= $alternatif['lokasi'] ?></td>
-                        <td><?= $alternatif['fasilitas'] ?></td>
-                        <td><?= $alternatif['kondisi jalan'] ?></td>
-                        <td><?= $alternatif['lingkungan'] ?></td>
-                        <td><?= $alternatif['listrik'] ?></td>
-                        <td><?= $alternatif['lantai'] ?></td>
-                        <td><?= $alternatif['halaman parkir'] ?></td>
-                        <td><?= $alternatif['air'] ?></td>
+                        <th>id Ruko</th>
+                        <th>C1xW1</th>
+                        <th>C2xW2</th>
+                        <th>C3xW3</th>
+                        <th>C4xW4</th>
+                        <th>C5xW5</th>
+                        <th>C6xW6</th>
+                        <th>C7xW7</th>
+                        <th>C8xW8</th>
+                        <th>C9xW9</th>
+                        <th>C10xW10</th>
+                        <th>Hasil Akhir</th>
                       </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($ruko as $alternatif) : ?>
+                        <tr>
+                          <td><?= $alternatif['idRuko'] ?></td>
+                          <td><?= $alternatif['V_harga'] ?></td>
+                          <td><?= $alternatif['V_ukuran'] ?></td>
+                          <td><?= $alternatif['V_lokasi'] ?></td>
+                          <td><?= $alternatif['V_fasilitas'] ?></td>
+                          <td><?= $alternatif['V_kondisi jalan'] ?></td>
+                          <td><?= $alternatif['V_lingkungan'] ?></td>
+                          <td><?= $alternatif['V_listrik'] ?></td>
+                          <td><?= $alternatif['V_lantai'] ?></td>
+                          <td><?= $alternatif['V_halaman parkir'] ?></td>
+                          <td><?= $alternatif['V_air'] ?></td>
+                          <td><?= $alternatif['V'] ?></td>
+                        </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-
-              <p class="card-text">Nilai Rating Kinerja Ternormalisasi</p>
-              <div class="col-md-6">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>id Ruko</th>
-                      <th>C1</th>
-                      <th>C2</th>
-                      <th>C3</th>
-                      <th>C4</th>
-                      <th>C5</th>
-                      <th>C6</th>
-                      <th>C7</th>
-                      <th>C8</th>
-                      <th>C9</th>
-                      <th>C10</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($ruko as $alternatif) : ?>
-                      <tr>
-                        <td><?= $alternatif['idRuko'] ?></td>
-                        <td><?= $alternatif['rating_harga'] ?></td>
-                        <td><?= $alternatif['rating_ukuran'] ?></td>
-                        <td><?= $alternatif['rating_lokasi'] ?></td>
-                        <td><?= $alternatif['rating_fasilitas'] ?></td>
-                        <td><?= $alternatif['rating_kondisi jalan'] ?></td>
-                        <td><?= $alternatif['rating_lingkungan'] ?></td>
-                        <td><?= $alternatif['rating_listrik'] ?></td>
-                        <td><?= $alternatif['rating_lantai'] ?></td>
-                        <td><?= $alternatif['rating_halaman parkir'] ?></td>
-                        <td><?= $alternatif['rating_air'] ?></td>
-                      </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                </table>
-              </div>
-
-              <p class="card-text">Hasil</p>
-              <div class="col-md-6">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>id Ruko</th>
-                      <th>Hasil Akhir</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php foreach ($ruko as $alternatif) : ?>
-                      <tr>
-                        <td><?= $alternatif['idRuko'] ?></td>
-                        <td><?= $alternatif['V'] ?></td>
-                      </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                </table>
-              </div>
-
-
             </div>
           </div>
         </div>
