@@ -104,29 +104,6 @@ class User extends BaseController
 
     public function search()
     {
-        // $dataKriteria = $this->request->getVar();
-
-        // $kriteria = model('KriteriaModel')->findAll();
-        // // simpan data kriteria
-        // $perhitungan['kriteria'] = $kriteria;
-
-        // $fasilitasModel = model('FasilitasModel');
-        // $subkriteriaModel = model('SubkriteriaModel');
-
-        // foreach ($dataKriteria as $value) {
-        //     if ($value != '-') {
-        //         $fasilitasModel->orwhere('fkSubkriteria', $value);
-        //     }
-        // }
-        // $fasilitasModel->select('fkRuko')->groupBy('fkRuko');
-        // $hasil = $fasilitasModel->find();
-
-
-
-
-
-
-
         $dataKriteria = $this->request->getVar();
 
         $ruko = $this->RukoModel->find();
@@ -210,7 +187,7 @@ class User extends BaseController
                         $rating = $Ruko[$Kriteria['kriteria']] / $max[$Kriteria['kriteria']];
                     }
                 }
-                $Ruko['rating_' . $Kriteria['kriteria']] = $rating;
+                $Ruko['rating_' . $Kriteria['kriteria']] = round($rating, 2);
                 $nilaiV[] = $rating * $Kriteria['bobot'];
             }
             $Ruko['V'] = round(array_sum($nilaiV) / 100, 3);
@@ -218,7 +195,7 @@ class User extends BaseController
         }
 
         usort($data, function ($a, $b) {
-            return $b['V'] - $a['V'];
+            return $b['V'] * 100 - $a['V'] * 100;
         });
 
         session()->set('perhitungan', $perhitungan);

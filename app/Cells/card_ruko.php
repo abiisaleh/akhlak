@@ -24,7 +24,7 @@
                             <span class="bi bi-chevron-right"></span>
                         </a>
                     </div>
-                    <div class="card-footer-a">
+                    <!-- <div class="card-footer-a">
                         <ul class="card-info d-flex justify-content-around">
                             <li>
                                 <h4 class="card-info-title">Area</h4>
@@ -45,7 +45,7 @@
                                 <span>1</span>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

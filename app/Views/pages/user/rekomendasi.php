@@ -41,8 +41,8 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Kriteria</th>
-                      <th>Bobot Ternormalisasi</th>
+                      <th>Kriteria (C)</th>
+                      <th>Bobot Ternormalisasi (W)</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -61,16 +61,16 @@
                   <thead>
                     <tr>
                       <th>id Ruko</th>
-                      <th>harga</th>
-                      <th>ukuran</th>
-                      <th>lokasi</th>
-                      <th>fasilitas</th>
-                      <th>kondisi jalan</th>
-                      <th>lingkungan</th>
-                      <th>listrik</th>
-                      <th>lantai</th>
-                      <th>halaman parkir</th>
-                      <th>air</th>
+                      <th>C1</th>
+                      <th>C2</th>
+                      <th>C3</th>
+                      <th>C4</th>
+                      <th>C5</th>
+                      <th>C6</th>
+                      <th>C7</th>
+                      <th>C8</th>
+                      <th>C9</th>
+                      <th>C10</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -99,16 +99,16 @@
                   <thead>
                     <tr>
                       <th>id Ruko</th>
-                      <th>harga</th>
-                      <th>ukuran</th>
-                      <th>lokasi</th>
-                      <th>fasilitas</th>
-                      <th>kondisi jalan</th>
-                      <th>lingkungan</th>
-                      <th>listrik</th>
-                      <th>lantai</th>
-                      <th>halaman parkir</th>
-                      <th>air</th>
+                      <th>C1</th>
+                      <th>C2</th>
+                      <th>C3</th>
+                      <th>C4</th>
+                      <th>C5</th>
+                      <th>C6</th>
+                      <th>C7</th>
+                      <th>C8</th>
+                      <th>C9</th>
+                      <th>C10</th>
                     </tr>
                   </thead>
                   <tbody>
