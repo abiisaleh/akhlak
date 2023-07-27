@@ -85,7 +85,9 @@ class Ruko extends BaseController
             $this->RukoModel->save($data);
             $res['msg'][] = 'Data berhasil diubah.';
 
-            return $this->response->setJSON($res);
+            $idRuko['id'] = $this->RukoModel->getInsertID();
+            // return redirect()->to('admin/ruko/' . $idRuko);
+            return $this->response->setJSON($idRuko);
         };
     }
 

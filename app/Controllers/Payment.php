@@ -40,9 +40,9 @@ class Payment extends BaseController
 
         // Melakukan pembayaran menggunakan Xendit
         $params = array(
-            'external_id' => 'SEWARUKO-123',
+            'external_id' => 'SEWARUKO-' . $data['idRuko'],
             'amount' => $total,
-            'description' => 'DP Sewa Ruko',
+            'description' => 'DP Sewa Ruko. untuk pembatalan silahkan klik link berikut ' . base_url('pembatalan/' . $idPesanan),
             'currency' => 'IDR',
             'invoice_duration' => 86400,
             'customer' => [
@@ -127,5 +127,20 @@ class Payment extends BaseController
     public function gagal()
     {
         return view('pages/user/sewa-gagal');
+    }
+
+    public function pembatalan($idPesanan)
+    {
+        $pesanan = model('PesananModel')->find($idPesanan);
+
+        //ubah status ruko menjadi disewakan
+        model('RukoModel')->update($pesanan['fkRuko'], ['status' => 0]);
+
+        //hapus pesanan
+        model('PesananModel')->delete($idPesanan);
+
+        //potong uang pemesanan
+
+        return view('pages/user/sewa-batal');
     }
 }

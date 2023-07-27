@@ -5,7 +5,38 @@
 <?php if (in_groups('admin')) : ?>
   <?= view('component/tabel', $data) ?>
 <?php else : ?>
-  <?= view('component/tabelR', $data) ?>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Tabel <?= $title ?></h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">
+              <i class="fas fa-plus"></i> Tambah Data
+            </button>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table id="tabel" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <?php foreach ($data['field'] as $value) : ?>
+                  <th><?= $value ?></th>
+                <?php endforeach; ?>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
 <?php endif ?>
 
 
@@ -47,24 +78,26 @@
               <input type="number" class="form-control" id="inputtelp" placeholder="-" name="telp">
             </div>
           </div>
-          <div class="form-group row">
-            <label for="selectverifikasi" class="col-sm-4 col-form-label">Verifikasi</label>
-            <div class="col-sm-8">
-              <select class="form-control" id="selectverifikasi" name="verifikasi">
-                <option value="0">belum verifikasi</option>
-                <option value="1">verifikasi</option>
-              </select>
+          <?php if (in_groups('admin')) : ?>
+            <div class="form-group row">
+              <label for="selectverifikasi" class="col-sm-4 col-form-label">Verifikasi</label>
+              <div class="col-sm-8">
+                <select class="form-control" id="selectverifikasi" name="verifikasi">
+                  <option value="0">belum verifikasi</option>
+                  <option value="1">verifikasi</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="selectstatus" class="col-sm-4 col-form-label">Status</label>
-            <div class="col-sm-8">
-              <select class="form-control" id="selectstatus" name="status">
-                <option value="0">disewakan</option>
-                <option value="1">sudah disewa</option>
-              </select>
+            <div class="form-group row">
+              <label for="selectstatus" class="col-sm-4 col-form-label">Status</label>
+              <div class="col-sm-8">
+                <select class="form-control" id="selectstatus" name="status">
+                  <option value="0">disewakan</option>
+                  <option value="1">sudah disewa</option>
+                </select>
+              </div>
             </div>
-          </div>
+          <?php endif ?>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
             <button type="submit" class="btn btn-primary btn-save">Simpan</button>
@@ -189,7 +222,7 @@
         url: window.location.href + '/save',
         type: 'POST',
         data: $(this).serialize(),
-        success: function() {
+        success: function(ruko) {
           $('#modal-add').modal('hide')
           dataTable.ajax.reload()
           $('#form-add')[0].reset()
@@ -197,11 +230,15 @@
           $.ajax({
             url: "<?= base_url('admin/ruko/show') ?>",
             dataType: "json",
-            success: function(data) {
+            success: function(response) {
               var mySpan = document.getElementById("countRuko");
               mySpan.textContent = data.total;
+              // jika pemilik maka redirect ke simpan
             }
           })
+
+          window.location.href = 'admin/ruko/' + ruko.id
+
         }
       })
     })
