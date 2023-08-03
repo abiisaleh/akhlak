@@ -36,13 +36,13 @@ class User extends BaseController
         $ruko = session()->getFlashdata('ruko');
 
         if ($id == 'semua') {
-            $data = ['ruko' => $this->RukoModel->findAll()];
+            $data = ['ruko' => $this->RukoModel->verifikasi()->findAll()];
             $view = 'pages/user/ruko';
         } elseif ($ruko != null) {
-            $data = ['ruko' => $this->RukoModel->find($ruko)];
+            $data = ['ruko' => $this->RukoModel->verifikasi()->find($ruko)];
             $view = 'pages/user/ruko';
         } elseif ($id) {
-            $data = ['ruko' => $this->RukoModel->find($id)];
+            $data = ['ruko' => $this->RukoModel->verifikasi()->find($id)];
             $view = 'pages/user/detailRuko';
         } else {
             $data['ruko'] = null;
@@ -56,7 +56,7 @@ class User extends BaseController
     {
         $dataKriteria = $this->request->getVar();
 
-        $ruko = $this->RukoModel->find();
+        $ruko = $this->RukoModel->verifikasi()->find();
 
         foreach ($ruko as $Ruko) {
             print_r($Ruko['idRuko']);
@@ -140,7 +140,7 @@ class User extends BaseController
             $DataRuko[] = $value[0]['fkRuko'];
         }
 
-        $ruko = $this->RukoModel->find($DataRuko);
+        $ruko = $this->RukoModel->verifikasi()->find($DataRuko);
         $kriteria = model('KriteriaModel')->findAll();
         $subkriteriaModel = model('SubkriteriaModel');
 
