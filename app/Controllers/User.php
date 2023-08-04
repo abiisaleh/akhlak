@@ -106,7 +106,7 @@ class User extends BaseController
     {
         $dataKriteria = $this->request->getVar();
 
-        $ruko = $this->RukoModel->find();
+        $ruko = $this->RukoModel->verifikasi()->find();
 
 
         foreach ($ruko as $Ruko) {
@@ -140,7 +140,7 @@ class User extends BaseController
             $DataRuko[] = $value[0]['fkRuko'];
         }
 
-        $ruko = $this->RukoModel->verifikasi()->find($DataRuko);
+        $ruko = $this->RukoModel->find($DataRuko);
         $kriteria = model('KriteriaModel')->findAll();
         $subkriteriaModel = model('SubkriteriaModel');
 
