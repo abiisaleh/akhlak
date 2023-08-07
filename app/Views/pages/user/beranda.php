@@ -154,13 +154,16 @@
           <div class="carousel-item-b swiper-slide">
             <div class="card-box-a card-shadow">
               <div class="img-box-a">
-                <img src="uploads/img/<?= $item['gambar'] ?>" alt="" class="img-a img-fluid" style="max-height: 400px; max-width: fit-content;">
+                <img src="uploads/img/<?= $item['gambar'] ?>" alt="" class="img-a img-fluid" style="max-height: 400px; max-width: fit-content; <?= ($item['status'] == 1) ? 'filter: grayscale(100%)' : '' ?>">
               </div>
               <div class="card-overlay">
                 <div class="card-overlay-a-content">
                   <div class="card-header-a">
+                    <?php if ($item['status'] == 1) : ?>
+                      <span class="badge bg-success p-3">Terjual</span>
+                    <?php endif ?>
                     <h2 class="card-title-a">
-                      <a href="property-single.html"><?= $item['idRuko'] ?> <?= $item['pemilik'] ?>
+                      <a href="#ruko"><?= $item['idRuko'] ?> <?= $item['pemilik'] ?>
                         <br /> <?= $item['alamat'] ?></a>
                     </h2>
                   </div>
@@ -168,7 +171,7 @@
                     <div class="price-box d-flex">
                       <span class="price-a">sewa | Rp. <?= number_format($item['harga']) ?></span>
                     </div>
-                    <a href="ruko/<?= $item['idRuko'] ?>" class="link-a">Detail selengkapnya
+                    <a href="<?= ($item['status'] == 1) ? '#ruko' : 'ruko/' . $item['idRuko'] ?>" class="link-a">Detail selengkapnya
                       <span class="bi bi-chevron-right"></span>
                     </a>
                   </div>
