@@ -189,9 +189,9 @@
           }
         },
         {
-          "data": "status",
+          "data": null,
           "render": function(data) {
-            if (data.verifikasi == 1) {
+            if (data.status == '1') {
               return "<span class='badge bg-success'>sudah disewa</span>"
             } else {
               return "<span class='badge bg-warning'>disewakan</span>"

@@ -160,7 +160,7 @@
                 <div class="card-overlay-a-content">
                   <div class="card-header-a">
                     <?php if ($item['status'] == 1) : ?>
-                      <span class="badge bg-success p-3">Terjual</span>
+                      <span class="badge bg-success p-3">Sudah disewa</span>
                     <?php endif ?>
                     <h2 class="card-title-a">
                       <a href="#ruko"><?= $item['idRuko'] ?> <?= $item['pemilik'] ?>

@@ -14,7 +14,7 @@
                 <div class="card-overlay-a-content">
                     <div class="card-header-a">
                         <?php if ($Ruko['status'] == 1) : ?>
-                            <span class="badge bg-success p-3">Terjual</span>
+                            <span class="badge bg-success p-3">Sudah disewa</span>
                         <?php endif ?>
                         <h2 class="card-title-a">
                             <a href="<?= ($Ruko['status'] == 1) ? 'javascript:void(0)' : 'ruko/' . $Ruko['idRuko'] ?>"><?= $Ruko['idRuko'] ?> <?= $Ruko['pemilik'] ?>
