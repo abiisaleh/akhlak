@@ -61,7 +61,7 @@ $routes->group('admin', static function ($routes) {
     });
 
     $routes->get('ruko', 'admin\Ruko::index');
-    $routes->get('ruko/(:num)', 'admin\Ruko::create/$1', ['filter' => 'role:pemilik']);
+    $routes->get('ruko/(:num)', 'admin\Ruko::create/$1');
     $routes->get('ruko/edit/(:num)', 'admin\Ruko::edit/$1');
     $routes->get('ruko/show', 'admin\Ruko::show');
     $routes->post('ruko/save', 'admin\Ruko::save');
