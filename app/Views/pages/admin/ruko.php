@@ -69,7 +69,7 @@
           <div class="form-group row">
             <label for="inputpemilik" class="col-sm-4 col-form-label">Pemilik</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="inputpemilik" placeholder="-" name="pemilik">
+              <input type="text" class="form-control" id="inputpemilik" placeholder="-" name="pemilik" value="<?= (in_groups('pemilik')) ? user()->username : '-' ?>">
             </div>
           </div>
           <div class="form-group row">

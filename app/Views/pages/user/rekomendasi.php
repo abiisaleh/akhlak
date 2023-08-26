@@ -97,6 +97,7 @@
                           <?php endforeach; ?>
                         </tbody>
                       </table>
+                      <p><i>data didapatkan dari hasil filter data ruko sesuai kriteria yang dipilih</i></p>
                     </div>
 
                     <div class="col-12">
@@ -135,6 +136,11 @@
                           <?php endforeach; ?>
                         </tbody>
                       </table>
+                      <p>
+                        <i>
+                          hasil perhitungan digunakan menggunakan rumus r<sub>ij</sub> = x<sub>ij</sub> / max x<sub>ij</sub> jika j adalah attribute keuntungan (benefit) dan r<sub>ij</sub> = min x<sub>ij</sub> / x<sub>ij</sub> jika j adalah attribute biaya (cost). kriteria yang termasuk attribut keuntungan yaitu <b>ukuran, lokasi, fasilitas, kondisi jalan, lingkungan, listrik, lantai, halaman parkir, air</b> sedangkan attribut biaya yaitu <b>harga</b>
+                      </p>
+                      </i>
                     </div>
                   </div>
                 </div>
@@ -177,6 +183,11 @@
                       <?php endforeach; ?>
                     </tbody>
                   </table>
+                  <p>
+                    <i>
+                      berdasarkan hasil perhitungan yang diperoleh maka ruko yang direkomendasikan yaitu <b>Ruko <?= $ruko[0]['idRuko'] ?></b> dengan hasil akhir <b><?= $ruko[0]['V'] ?></b>
+                    </i>
+                  </p>
                 </div>
               </div>
             </div>
